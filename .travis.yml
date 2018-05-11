@@ -1,0 +1,14 @@
+language: objective-c
+os: osx
+osx_image: xcode9.3
+
+branches:
+  only:
+    - master
+    - CI
+
+script:
+      set -o pipefail
+      xcodebuild  -workspace RxElegantReuse.xcworkspace -scheme RxElegantReuse-iOS -destination 'platform=iOS Simulator,name=iPhone 7,OS=11' -enableCodeCoverage YES | xcpretty
+after_success:
+    - sleep 5
