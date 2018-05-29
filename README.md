@@ -57,15 +57,17 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 ## Installation
 - **Using [CocoaPods](https://cocoapods.org)**:
     ```ruby
-    soon
+    pod 'RxElegantReuse', '~> 4.0'
     ```
 
 - **Using [Carthage](https://github.com/Carthage/Carthage)**:
     ```
-    soon
+    github "TStrawberry/RxElegantReuse" ~> 4.0
     ```
+    **For keeping same version number with Swift and RxSwift, there is no 1.0, 2.0 and 3.0.**
 
 ## Usage
+
 RxElegantReuse provide only several API for this specific scene.
 - Step 1 : Making the reusable view managed by it's container(UITableView/UiCollectionView).
 ```swift

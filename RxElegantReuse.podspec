@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "RxElegantReuse"
-  s.version          = "4.0-beta.3"
+  s.version          = "4.0"
   s.summary          = "RxCocoa reuse extensions"
   s.description      = <<-DESC
 An elegant and RxSwift-based way to observe events inside of reusable views like UITableViewCell, UICollectionViewCell.
