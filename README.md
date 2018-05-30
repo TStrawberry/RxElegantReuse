@@ -57,12 +57,12 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 ## Installation
 - **Using [CocoaPods](https://cocoapods.org)**:
     ```ruby
-    pod 'RxElegantReuse', '~> 4.0'
+    pod 'RxElegantReuse', '~> 4.1'
     ```
 
 - **Using [Carthage](https://github.com/Carthage/Carthage)**:
     ```
-    github "TStrawberry/RxElegantReuse" ~> 4.0
+    github "TStrawberry/RxElegantReuse" ~> 4.1
     ```
     **For keeping same version number with Swift and RxSwift, there is no 1.0, 2.0 and 3.0.**
 
