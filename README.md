@@ -62,10 +62,14 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 
 - **Using [Carthage](https://github.com/Carthage/Carthage)**:
     ```
-    github "TStrawberry/RxElegantReuse" ~> 4.1
+    // todo
     ```
-    **For keeping same version number with Swift and RxSwift, there is no 1.0, 2.0 and 3.0.**
+    
+- **Drag the Sources folder to your project**
 
+   
+**For keeping same version number with Swift and RxSwift, there is no 1.0, 2.0 and 3.0.**
+    
 ## Usage
 
 RxElegantReuse provide only several API for this specific scene.
