@@ -8,14 +8,13 @@
 import UIKit
 import RxSwift
 
-
 typealias ViewSet = NSHashTable<UIView>
 
 class SpecificManager<C : ReusableViewContainer> {
     
-    private lazy var elementSequences   : [AnyKeyPath: ElementSequence<C, Any>]     = { return [:] }()
-    private lazy var subClassManager    : [InheritPath: SpecificManager<C>]         = { return [:] }()
-    private lazy var views              : ViewSet    = { return ViewSet(options: .weakMemory) }()
+    private lazy var elementSequences: [AnyKeyPath: ElementSequence<C, Any>] = { return [:] }()
+    private lazy var subClassManager: [InheritPath: SpecificManager<C>] = { return [:] }()
+    private lazy var views: ViewSet = { return ViewSet(options: .weakMemory) }()
     
     func add<R : ReusableView>(_ reusableView: R, with path: InheritPath) {
         
@@ -27,7 +26,6 @@ class SpecificManager<C : ReusableViewContainer> {
         
         elementSequences.values.forEach { $0.emitElement(on: reusableView) }
     }
-    
     
     func events<R : ReusableView, O : ObservableConvertibleType>(for keyPath: KeyPath<R, O>, inheritPath: InheritPath) -> Events<C, R, O> {
         
@@ -56,7 +54,7 @@ class SpecificManager<C : ReusableViewContainer> {
         
         if let elementSequence = elementSequences[keyPath] { return elementSequence }
         
-        let elementSequence = ElementSequence<C, Any> { $0[keyPath: keyPath] }
+        let elementSequence = ElementSequence<C, Any> { ($0 as! R)[keyPath: keyPath] }
         elementSequence.emitElement(on: AnyCollection(views.allObjects))
         _ = subClassManager.values
             .map { $0.elementSequence(for: keyPath) }

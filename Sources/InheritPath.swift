@@ -25,7 +25,6 @@ class InheritPath : Hashable {
     }
     
     static func instance(from sub: AnyClass, to sup: AnyClass, with path: InheritPath? = nil) throws -> InheritPath {
-        
         guard let superClass = sub.superclass() else { throw InitError.notExist }
         
         if sub == sup {
@@ -39,7 +38,6 @@ class InheritPath : Hashable {
         let newPath = InheritPath(ObjectIdentifier(sub), path)
         return try instance(from: superClass, to: sup, with: newPath)
     }
-    
     
     static func ==(lhs: InheritPath, rhs: InheritPath) -> Bool {
         return lhs.identifier == rhs.identifier

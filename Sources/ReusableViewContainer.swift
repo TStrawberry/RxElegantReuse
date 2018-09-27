@@ -20,7 +20,7 @@ public protocol ReusableViewContainer : NSObjectProtocol {
 
 extension UITableView : ReusableViewContainer {
     
-    public typealias BaseReusableType = UITableViewCell
+    public typealias IndexedType = UITableViewCell
     
     public func model<T>(at indexPath: IndexPath) throws -> T {
         return try rx.model(at: indexPath)
@@ -29,7 +29,7 @@ extension UITableView : ReusableViewContainer {
 
 extension UICollectionView : ReusableViewContainer {
     
-    public typealias BaseReusableType = UICollectionViewCell
+    public typealias IndexedType = UICollectionViewCell
     
     public func model<T>(at indexPath: IndexPath) throws -> T {
         return try rx.model(at: indexPath)

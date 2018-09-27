@@ -10,8 +10,8 @@ import RxSwift
 
 class ElegantEventsManager<C : UIView & ReusableViewContainer> {
     
-    private var specs   : [InheritPath: Any]    = [:]
-    private var views   : ViewSet               = ViewSet(options: .weakMemory)
+    private var specs : [InheritPath: Any] = [:]
+    private var views : ViewSet = ViewSet(options: .weakMemory)
     
     func add<R : ReusableView>(_ reusableView: R) {
         if views.contains(reusableView) { return }

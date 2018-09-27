@@ -16,7 +16,7 @@ public protocol Indexed: Reusable {
     associatedtype IndexedViewType : UIView
 }
 
-extension UITableViewCell: Indexed {
+extension UITableViewCell : Indexed {
     public typealias BaseReusableViewType = UITableViewCell
     public typealias IndexedViewType = UITableViewCell
 }
@@ -30,7 +30,7 @@ extension UICollectionReusableView : Reusable {
 }
 
 extension UICollectionViewCell : Indexed {
-    public typealias IndexedViewType = UITableViewCell
+    public typealias IndexedViewType = UICollectionViewCell
 }
 
 public typealias ReusableView = UIView & Reusable

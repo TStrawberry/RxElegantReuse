@@ -17,6 +17,12 @@ class RootViewController: UITableViewController {
     @IBAction func updateItemClicked(_ sender: UIBarButtonItem) {
         navigationItem.title = "RxSwift.Resources.total : " + "\(RxSwift.Resources.total)"
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationItem.title = "RxSwift.Resources.total : " + "\(RxSwift.Resources.total)"
+    }
+    
 }
 
 // MARK: - Example of UITableView
@@ -29,6 +35,12 @@ class DemoTableViewCellOne: UITableViewCell {
     @IBOutlet weak var stepper: UIStepper!
     
     @IBOutlet weak var slider: UISlider!
+    
+    var errorObservable: Observable<()> {
+        return button.rx.tap.take(3)
+            .concat(Observable.error(RxError.unknown))
+            .asObservable()
+    }
 }
 
 class TableViewHeaderView: UITableViewHeaderFooterView {
@@ -50,14 +62,13 @@ class TableViewController: UITableViewController {
         tableView.rx.setDelegate(self).disposed(by: bag)
         tableView.register(UINib(nibName: "TableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "Header")
         
-        let section = SectionModel<String, String>(model: "Section Model", items: ["Cell Model"])
+        let section = SectionModel<String, String>(model: "Section Model", items: ["Cell Model", "Cell Model 1"])
 
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, String>>.init(configureCell: {
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, String>>(configureCell: {
             (_, tableView, _, _) in
             
             return tableView.dequeueReusableCell(withIdentifier:"DemoTableViewCellOne")!.managed(by: tableView)
         })
-        
         
         let sections = Array(repeating: section, count: 10)
         Observable.just(sections)
@@ -65,28 +76,35 @@ class TableViewController: UITableViewController {
             .disposed(by: bag)
         
         tableView.rx.events(\TableViewHeaderView.button.rx.tap)
-            .merge()
             .subscribe(onNext: { (_) in
                 print("header")
             })
             .disposed(by: bag)
         
         tableView.rx.events(\DemoTableViewCellOne.button.rx.tap)
-            .mergeWithIndexPath { $1 }
+            .withIndexPath { $1 }
             .subscribe(onNext: { (indexPath) in
                 print(indexPath)
             })
             .disposed(by: bag)
         
         tableView.rx.events(\DemoTableViewCellOne.slider.rx.value.changed)
-            .merge()
+            .withModel(with: String.self, { $1 })
+            .subscribe(onNext: { (value) in
+                print(value)
+            })
+            .disposed(by: bag)
+        
+        tableView.rx.events(\DemoTableViewCellOne.errorObservable)
+            .catchEventsError({ (_) -> Observable<()> in
+                Observable.empty()
+            })
             .subscribe(onNext: { (value) in
                 print(value)
             })
             .disposed(by: bag)
         
         tableView.rx.events(\DemoTableViewCellOne.switcher.rx.isOn.changed)
-            .merge()
             .subscribe(onNext: { (isOn) in
                 print(isOn)
             })
@@ -113,11 +131,6 @@ class TableViewController: UITableViewController {
     }
     
 }
-
-
-
-
-
 
 
 // MARK: - Example of UITCollectionView
@@ -184,11 +197,10 @@ class CollectionViewController: UICollectionViewController {
         collectionView?.register(UINib(nibName: "CollectionViewHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderView")
         collectionView?.register(CollectionViewFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView")
         
-        collectionView?.rx
-            .events(\DemoButtonCollectionViewCell.button.rx.tap)
-            .merge()
+        collectionView?.rx.events(\DemoButtonCollectionViewCell.button.rx.tap)
+            .withIndexPath { $1 }
             .subscribe({ (event) in
-                print("tapped")
+                print(event)
             })
             .disposed(by: bag)
         
@@ -221,21 +233,18 @@ class CollectionViewController: UICollectionViewController {
         
         collectionView?.rx
             .events(\DemoStepperCollectionViewCell.stepper.rx.value.changed)
-            .merge()
             .subscribe({ (_) in
                 print("stepper")
             })
             .disposed(by: bag)
         
         collectionView?.rx.events(\CollectionViewHeaderView.button.rx.tap)
-            .merge()
             .subscribe(onNext: { (_) in
                 print("Button in header tapped")
             })
             .disposed(by: bag)
         
         collectionView?.rx.events(\CollectionViewFooterView.switcher.rx.isOn.changed)
-            .merge()
             .subscribe(onNext: { (_) in
                 print("Switch in footer switched")
             })
