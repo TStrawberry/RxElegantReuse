@@ -4,6 +4,9 @@
 # CocoaPods
 Pods/
 
+# Carthage
+Carthage/
+
 # Xcode
 
 ## Build generated
