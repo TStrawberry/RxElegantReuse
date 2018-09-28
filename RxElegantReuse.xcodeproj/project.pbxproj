@@ -13,7 +13,7 @@
 		96AF02B120A3306900568B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02AF20A3306900568B2F /* LaunchScreen.storyboard */; };
 		96AF02CC20A342DA00568B2F /* RxElegantReuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AF029820A32F9800568B2F /* RxElegantReuse.framework */; };
 		96AF02CF20A3498900568B2F /* ElegantEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B920A330D000568B2F /* ElegantEventsManager.swift */; };
-		96AF02D020A3498900568B2F /* ElementSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BA20A330D000568B2F /* ElementSequence.swift */; };
+		96AF02D020A3498900568B2F /* ViewObservableSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BA20A330D000568B2F /* ViewObservableSubject.swift */; };
 		96AF02D120A3498900568B2F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BC20A330D000568B2F /* Events.swift */; };
 		96AF02D220A3498900568B2F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B720A330D000568B2F /* Extensions.swift */; };
 		96AF02D320A3498900568B2F /* InheritPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B820A330D000568B2F /* InheritPath.swift */; };
@@ -65,7 +65,7 @@
 		96AF02B720A330D000568B2F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		96AF02B820A330D000568B2F /* InheritPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InheritPath.swift; sourceTree = "<group>"; };
 		96AF02B920A330D000568B2F /* ElegantEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElegantEventsManager.swift; sourceTree = "<group>"; };
-		96AF02BA20A330D000568B2F /* ElementSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementSequence.swift; sourceTree = "<group>"; };
+		96AF02BA20A330D000568B2F /* ViewObservableSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewObservableSubject.swift; sourceTree = "<group>"; };
 		96AF02BB20A330D000568B2F /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		96AF02BC20A330D000568B2F /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		96AF02BD20A330D000568B2F /* ReusableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewContainer.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				96AF02B920A330D000568B2F /* ElegantEventsManager.swift */,
-				96AF02BA20A330D000568B2F /* ElementSequence.swift */,
+				96AF02BA20A330D000568B2F /* ViewObservableSubject.swift */,
 				96AF02BC20A330D000568B2F /* Events.swift */,
 				96AF02B720A330D000568B2F /* Extensions.swift */,
 				96AF02B820A330D000568B2F /* InheritPath.swift */,
@@ -295,7 +295,7 @@
 				96AF02CF20A3498900568B2F /* ElegantEventsManager.swift in Sources */,
 				96AF02D320A3498900568B2F /* InheritPath.swift in Sources */,
 				96AF02D420A3498900568B2F /* ReusableView.swift in Sources */,
-				96AF02D020A3498900568B2F /* ElementSequence.swift in Sources */,
+				96AF02D020A3498900568B2F /* ViewObservableSubject.swift in Sources */,
 				96AF02D220A3498900568B2F /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

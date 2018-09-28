@@ -12,7 +12,7 @@ typealias ViewSet = NSHashTable<UIView>
 
 class SpecificManager<C : ReusableViewContainer> {
     
-    private lazy var elementSequences: [AnyKeyPath: ElementSequence<C, Any>] = { return [:] }()
+    private lazy var viewObservableSubjects: [AnyKeyPath: ViewObservableSubject<C, Any>] = { return [:] }()
     private lazy var subClassManager: [InheritPath: SpecificManager<C>] = { return [:] }()
     private lazy var views: ViewSet = { return ViewSet(options: .weakMemory) }()
     
@@ -24,7 +24,7 @@ class SpecificManager<C : ReusableViewContainer> {
             views.add(reusableView)
         }
         
-        elementSequences.values.forEach { $0.emitElement(on: reusableView) }
+        viewObservableSubjects.values.forEach { $0.emitElement(on: reusableView) }
     }
     
     func events<R : ReusableView, O : ObservableConvertibleType>(for keyPath: KeyPath<R, O>, inheritPath: InheritPath) -> Events<C, R, O> {
@@ -49,23 +49,22 @@ class SpecificManager<C : ReusableViewContainer> {
         return subManager
     }
     
-    
-    private func elementSequence<R : ReusableView, O>(for keyPath: KeyPath<R, O>) -> ElementSequence<C, Any> {
+    private func elementSequence<R : ReusableView, O>(for keyPath: KeyPath<R, O>) -> ViewObservableSubject<C, Any> {
         
-        if let elementSequence = elementSequences[keyPath] { return elementSequence }
+        if let viewObservableSubject = viewObservableSubjects[keyPath] { return viewObservableSubject }
         
-        let elementSequence = ElementSequence<C, Any> { ($0 as! R)[keyPath: keyPath] }
-        elementSequence.emitElement(on: AnyCollection(views.allObjects))
+        let viewObservableSubject = ViewObservableSubject<C, Any> { ($0 as! R)[keyPath: keyPath] }
+        viewObservableSubject.emitElement(on: AnyCollection(views.allObjects))
         _ = subClassManager.values
             .map { $0.elementSequence(for: keyPath) }
             .merge()?
             .mapFilterNil {
                 (values) -> (R, O)? in values ?>> (R, O).self
             }
-            .bind(to: elementSequence)
+            .bind(to: viewObservableSubject.asObserver())
         
-        elementSequences[keyPath] = elementSequence
-        return elementSequence
+        viewObservableSubjects[keyPath] = viewObservableSubject
+        return viewObservableSubject
         
     }
     

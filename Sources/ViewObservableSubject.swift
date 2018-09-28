@@ -9,14 +9,15 @@ import UIKit
 import RxSwift
 
 
-class ElementSequence<C : ReusableViewContainer, Element> : ObservableType, ObserverType {
+class ViewObservableSubject<C : ReusableViewContainer, ObservableConvertible> : SubjectType {
     
-    typealias E = (UIView, Element)
+    typealias E = (UIView, ObservableConvertible)
+    typealias SubjectObserverType = AnyObserver<E>
     
     private let targetObs: ReplaySubject<E> = ReplaySubject<E>.createUnbounded()
-    private let toElement: (UIView) -> Element
+    private let toElement: (UIView) -> ObservableConvertible
     
-    init(_ toElement: @escaping (UIView) -> Element) {
+    init(_ toElement: @escaping (UIView) -> ObservableConvertible) {
         self.toElement = toElement
     }
     
@@ -28,12 +29,16 @@ class ElementSequence<C : ReusableViewContainer, Element> : ObservableType, Obse
         reusableViews.forEach(emitElement)
     }
     
-    func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, ElementSequence.E == O.E {
+    func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, ViewObservableSubject.E == O.E {
         return targetObs.subscribe(observer)
     }
     
-    func on(_ event: Event<(UIView, Element)>) {
+    func on(_ event: Event<(UIView, ObservableConvertible)>) {
         targetObs.on(event)
+    }
+    
+    func asObserver() -> ViewObservableSubject<C, ObservableConvertible>.SubjectObserverType {
+        return AnyObserver(targetObs)
     }
     
     deinit {

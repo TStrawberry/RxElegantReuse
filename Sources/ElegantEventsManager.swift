@@ -8,6 +8,9 @@
 import UIKit
 import RxSwift
 
+
+
+
 class ElegantEventsManager<C : UIView & ReusableViewContainer> {
     
     private var specs : [InheritPath: Any] = [:]
@@ -18,15 +21,15 @@ class ElegantEventsManager<C : UIView & ReusableViewContainer> {
         views.add(reusableView)
         
         let inheritPath = try! InheritPath.instance(from: type(of: reusableView), to: R.BaseReusableViewType.self)
-        specs(for: inheritPath).add(reusableView, with: inheritPath)
+        specificManager(for: inheritPath).add(reusableView, with: inheritPath)
     }
     
     func events<R : ReusableView, O : ObservableConvertibleType>(for keyPath: KeyPath<R, O>) -> Events<C, R, O> {
         let inheritPath = try! InheritPath.instance(from: R.self, to: R.BaseReusableViewType.self)
-        return specs(for: inheritPath).events(for: keyPath, inheritPath: inheritPath)
+        return specificManager(for: inheritPath).events(for: keyPath, inheritPath: inheritPath)
     }
     
-    private func specs(`for` inheritPath: InheritPath) -> SpecificManager<C> {
+    private func specificManager(`for` inheritPath: InheritPath) -> SpecificManager<C> {
         if let spec = specs[inheritPath] as? SpecificManager<C> {
             return spec
         } else {
