@@ -24,7 +24,7 @@ class SpecificManager<C : ReusableViewContainer> {
             views.add(reusableView)
         }
         
-        viewObservableSubjects.values.forEach { $0.emitElement(on: reusableView) }
+        viewObservableSubjects.values.forEach { $0.emitViewObservable(on: reusableView) }
     }
     
     func events<R : ReusableView, O : ObservableConvertibleType>(for keyPath: KeyPath<R, O>, inheritPath: InheritPath) -> Events<C, R, O> {
@@ -54,7 +54,7 @@ class SpecificManager<C : ReusableViewContainer> {
         if let viewObservableSubject = viewObservableSubjects[keyPath] { return viewObservableSubject }
         
         let viewObservableSubject = ViewObservableSubject<C, Any> { ($0 as! R)[keyPath: keyPath] }
-        viewObservableSubject.emitElement(on: AnyCollection(views.allObjects))
+        viewObservableSubject.emitViewObservables(on: AnyCollection(views.allObjects))
         _ = subClassManager.values
             .map { $0.elementSequence(for: keyPath) }
             .merge()?

@@ -34,7 +34,7 @@ extension UICollectionViewCell : Indexed {
 }
 
 public typealias ReusableView = UIView & Reusable
-public typealias IndexedView = UIView & Indexed
+public typealias IndexedView = ReusableView & Indexed
 
 public extension Reusable where Self : UIView {
     @discardableResult

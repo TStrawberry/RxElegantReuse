@@ -64,7 +64,7 @@ public struct Events<C : ReusableViewContainer, R : ReusableView, O: ObservableC
     private func flatten<T>(with extra: @escaping (C, R, O.E) -> T,
                            _ errorHandler: ((Error) -> Observable<O.E>)? = nil) -> Observable<T> {
         return obs.flatMap({ (values) -> Observable<T> in
-            return values.1.asObservable()
+            values.1.asObservable()
                 .catchError({ (error) -> Observable<O.E> in
                     return errorHandler?(error) ?? Observable.error(error)
                 })

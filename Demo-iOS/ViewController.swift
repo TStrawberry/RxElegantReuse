@@ -143,6 +143,9 @@ class DemoStepperCollectionViewCell: UICollectionViewCell {
 }
 
 class CollectionViewHeaderView: UICollectionReusableView {
+    
+    var section: Int? = nil
+    
     @IBOutlet weak var button: UIButton!
 }
 
@@ -193,7 +196,6 @@ class CollectionViewController: UICollectionViewController {
         layout.headerReferenceSize = CGSize(width: 80, height: 80)
         layout.footerReferenceSize = CGSize(width: 80, height: 80)
         
-        
         collectionView?.register(UINib(nibName: "CollectionViewHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderView")
         collectionView?.register(CollectionViewFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView")
         
@@ -206,7 +208,7 @@ class CollectionViewController: UICollectionViewController {
         
         let section = SectionModel<String, Controls>(model: "Section Model", items: [.button, .stepper, .stepper, .button])
         
-        let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, Controls>>.init (configureCell: {
+        let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, Controls>> (configureCell: {
             (_, collectionView, indexPath, control) in
             collectionView.dequeueReusableCell(withReuseIdentifier: control.rawValue, for: indexPath)
                 .managed(by: collectionView)
@@ -217,8 +219,10 @@ class CollectionViewController: UICollectionViewController {
             (_, collectionView, kind, indexPath) in
             
             if kind == UICollectionElementKindSectionHeader {
-                return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderView", for: indexPath)
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderView", for: indexPath)
                     .managed(by: collectionView)
+                (header as? CollectionViewHeaderView)?.section = indexPath.section
+                return header
             } else if kind == UICollectionElementKindSectionFooter {
                 return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView", for: indexPath)
                     .managed(by: collectionView)
@@ -239,8 +243,11 @@ class CollectionViewController: UICollectionViewController {
             .disposed(by: bag)
         
         collectionView?.rx.events(\CollectionViewHeaderView.button.rx.tap)
-            .subscribe(onNext: { (_) in
-                print("Button in header tapped")
+            .with({ (collectionView, headerView, event) -> ControlEvent<Int?> in
+                return ControlEvent(events: event.map { headerView.section })
+            })
+            .subscribe(onNext: { (section) in
+                print(section)
             })
             .disposed(by: bag)
         

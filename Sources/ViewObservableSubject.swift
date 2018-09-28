@@ -14,35 +14,31 @@ class ViewObservableSubject<C : ReusableViewContainer, ObservableConvertible> : 
     typealias E = (UIView, ObservableConvertible)
     typealias SubjectObserverType = AnyObserver<E>
     
-    private let targetObs: ReplaySubject<E> = ReplaySubject<E>.createUnbounded()
-    private let toElement: (UIView) -> ObservableConvertible
+    private let targetSubject: ReplaySubject<E> = ReplaySubject<E>.createUnbounded()
+    private let toObservableConvertible: (UIView) -> ObservableConvertible
     
-    init(_ toElement: @escaping (UIView) -> ObservableConvertible) {
-        self.toElement = toElement
+    init(_ toObservableConvertible: @escaping (UIView) -> ObservableConvertible) {
+        self.toObservableConvertible = toObservableConvertible
     }
     
-    func emitElement(on reusableView: UIView) {
-        targetObs.onNext((reusableView, toElement(reusableView)))
+    func emitViewObservable(on reusableView: UIView) {
+        targetSubject.onNext((reusableView, toObservableConvertible(reusableView)))
     }
     
-    func emitElement(on reusableViews: AnyCollection<UIView>) {
-        reusableViews.forEach(emitElement)
+    func emitViewObservables(on reusableViews: AnyCollection<UIView>) {
+        reusableViews.forEach(emitViewObservable)
     }
     
     func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, ViewObservableSubject.E == O.E {
-        return targetObs.subscribe(observer)
-    }
-    
-    func on(_ event: Event<(UIView, ObservableConvertible)>) {
-        targetObs.on(event)
+        return targetSubject.subscribe(observer)
     }
     
     func asObserver() -> ViewObservableSubject<C, ObservableConvertible>.SubjectObserverType {
-        return AnyObserver(targetObs)
+        return AnyObserver(targetSubject)
     }
     
     deinit {
-        targetObs.onCompleted()
+        targetSubject.onCompleted()
     }
     
 }

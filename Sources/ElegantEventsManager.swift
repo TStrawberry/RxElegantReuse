@@ -8,12 +8,9 @@
 import UIKit
 import RxSwift
 
-
-
-
 class ElegantEventsManager<C : UIView & ReusableViewContainer> {
     
-    private var specs : [InheritPath: Any] = [:]
+    private var specificManagers : [InheritPath: Any] = [:]
     private var views : ViewSet = ViewSet(options: .weakMemory)
     
     func add<R : ReusableView>(_ reusableView: R) {
@@ -30,11 +27,11 @@ class ElegantEventsManager<C : UIView & ReusableViewContainer> {
     }
     
     private func specificManager(`for` inheritPath: InheritPath) -> SpecificManager<C> {
-        if let spec = specs[inheritPath] as? SpecificManager<C> {
+        if let spec = specificManagers[inheritPath] as? SpecificManager<C> {
             return spec
         } else {
             let spec = SpecificManager<C>()
-            specs[inheritPath] = spec
+            specificManagers[inheritPath] = spec
             return spec
         }
     }
