@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F239C06215F24CF00EB70B3 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C04215F24CF00EB70B3 /* RxCocoa.framework */; };
+		5F239C07215F24CF00EB70B3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C05215F24CF00EB70B3 /* RxSwift.framework */; };
+		5F239C08215F252400EB70B3 /* ElegantEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B920A330D000568B2F /* ElegantEventsManager.swift */; };
+		5F239C09215F252400EB70B3 /* ViewObservableSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BA20A330D000568B2F /* ViewObservableSubject.swift */; };
+		5F239C0A215F252400EB70B3 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BC20A330D000568B2F /* Events.swift */; };
+		5F239C0B215F252400EB70B3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B720A330D000568B2F /* Extensions.swift */; };
+		5F239C0C215F252400EB70B3 /* InheritPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B820A330D000568B2F /* InheritPath.swift */; };
+		5F239C0D215F252400EB70B3 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BB20A330D000568B2F /* ReusableView.swift */; };
+		5F239C0E215F252400EB70B3 /* ReusableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BD20A330D000568B2F /* ReusableViewContainer.swift */; };
+		5F239C0F215F252400EB70B3 /* SpecificManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BE20A330D000568B2F /* SpecificManager.swift */; };
+		5F239C29215F273400EB70B3 /* RxElegantReuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239BFC215F24A400EB70B3 /* RxElegantReuse.framework */; };
+		5F239C2A215F273400EB70B3 /* RxElegantReuse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239BFC215F24A400EB70B3 /* RxElegantReuse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F239C2D215F273400EB70B3 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C04215F24CF00EB70B3 /* RxCocoa.framework */; };
+		5F239C2E215F273400EB70B3 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C04215F24CF00EB70B3 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F239C2F215F273400EB70B3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C05215F24CF00EB70B3 /* RxSwift.framework */; };
+		5F239C30215F273400EB70B3 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C05215F24CF00EB70B3 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F239C37215F27DE00EB70B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C36215F27DE00EB70B3 /* UIKit.framework */; };
+		5F239C3B215F4BE300EB70B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02A620A3306900568B2F /* AppDelegate.swift */; };
+		5F239C3C215F4BE300EB70B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02A820A3306900568B2F /* ViewController.swift */; };
+		5F239C43215F4F4C00EB70B3 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C41215F4F4C00EB70B3 /* RxDataSources.framework */; };
+		5F239C44215F4F4C00EB70B3 /* RxDataSources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C41215F4F4C00EB70B3 /* RxDataSources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F239C45215F4F4C00EB70B3 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C42215F4F4C00EB70B3 /* Differentiator.framework */; };
+		5F239C46215F4F4C00EB70B3 /* Differentiator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C42215F4F4C00EB70B3 /* Differentiator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F239C47215F511200EB70B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02AD20A3306900568B2F /* Assets.xcassets */; };
 		96AF02A720A3306900568B2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02A620A3306900568B2F /* AppDelegate.swift */; };
 		96AF02A920A3306900568B2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02A820A3306900568B2F /* ViewController.swift */; };
 		96AF02AE20A3306900568B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02AD20A3306900568B2F /* Assets.xcassets */; };
@@ -35,7 +59,32 @@
 		96C130B520A4968D0052F195 /* TableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02BF20A331DD00568B2F /* TableViewHeaderView.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5F239C2B215F273400EB70B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96AF027E20A32D5900568B2F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F239BFB215F24A400EB70B3;
+			remoteInfo = "RxElegantReuse-tvOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		5F239C35215F273400EB70B3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5F239C2E215F273400EB70B3 /* RxCocoa.framework in Embed Frameworks */,
+				5F239C46215F4F4C00EB70B3 /* Differentiator.framework in Embed Frameworks */,
+				5F239C2A215F273400EB70B3 /* RxElegantReuse.framework in Embed Frameworks */,
+				5F239C30215F273400EB70B3 /* RxSwift.framework in Embed Frameworks */,
+				5F239C44215F4F4C00EB70B3 /* RxDataSources.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96C130A920A4962E0052F195 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,6 +102,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F239BFC215F24A400EB70B3 /* RxElegantReuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxElegantReuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F239C04215F24CF00EB70B3 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/tvOS/RxCocoa.framework; sourceTree = "<group>"; };
+		5F239C05215F24CF00EB70B3 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/tvOS/RxSwift.framework; sourceTree = "<group>"; };
+		5F239C14215F25B000EB70B3 /* Demo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F239C36215F27DE00EB70B3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		5F239C41215F4F4C00EB70B3 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/tvOS/RxDataSources.framework; sourceTree = "<group>"; };
+		5F239C42215F4F4C00EB70B3 /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/tvOS/Differentiator.framework; sourceTree = "<group>"; };
 		96AF028A20A32D5900568B2F /* RxElegantReuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxElegantReuse.h; sourceTree = "<group>"; };
 		96AF028B20A32D5900568B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96AF029820A32F9800568B2F /* RxElegantReuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxElegantReuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +140,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5F239BF9215F24A400EB70B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F239C06215F24CF00EB70B3 /* RxCocoa.framework in Frameworks */,
+				5F239C07215F24CF00EB70B3 /* RxSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F239C11215F25B000EB70B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F239C45215F4F4C00EB70B3 /* Differentiator.framework in Frameworks */,
+				5F239C37215F27DE00EB70B3 /* UIKit.framework in Frameworks */,
+				5F239C2D215F273400EB70B3 /* RxCocoa.framework in Frameworks */,
+				5F239C43215F4F4C00EB70B3 /* RxDataSources.framework in Frameworks */,
+				5F239C29215F273400EB70B3 /* RxElegantReuse.framework in Frameworks */,
+				5F239C2F215F273400EB70B3 /* RxSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96AF029420A32F9800568B2F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -111,11 +189,13 @@
 			isa = PBXGroup;
 			children = (
 				96C130AE20A4966C0052F195 /* Differentiator.framework */,
+				5F239C42215F4F4C00EB70B3 /* Differentiator.framework */,
+				5F239C41215F4F4C00EB70B3 /* RxDataSources.framework */,
 				96C130AC20A4966C0052F195 /* RxCocoa.framework */,
 				96C130AB20A4966C0052F195 /* RxDataSources.framework */,
 				96C130AD20A4966C0052F195 /* RxSwift.framework */,
 				96AF028920A32D5900568B2F /* Sources */,
-				96AF02A520A3306900568B2F /* Demo-iOS */,
+				96AF02A520A3306900568B2F /* Demo */,
 				96AF028820A32D5900568B2F /* Products */,
 				96AF02C220A3359400568B2F /* Frameworks */,
 			);
@@ -126,6 +206,8 @@
 			children = (
 				96AF029820A32F9800568B2F /* RxElegantReuse.framework */,
 				96AF02A420A3306900568B2F /* Demo-iOS.app */,
+				5F239BFC215F24A400EB70B3 /* RxElegantReuse.framework */,
+				5F239C14215F25B000EB70B3 /* Demo-tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,7 +229,7 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		96AF02A520A3306900568B2F /* Demo-iOS */ = {
+		96AF02A520A3306900568B2F /* Demo */ = {
 			isa = PBXGroup;
 			children = (
 				96AF02A620A3306900568B2F /* AppDelegate.swift */,
@@ -159,12 +241,15 @@
 				96AF02AD20A3306900568B2F /* Assets.xcassets */,
 				96AF02B220A3306900568B2F /* Info.plist */,
 			);
-			path = "Demo-iOS";
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		96AF02C220A3359400568B2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F239C36215F27DE00EB70B3 /* UIKit.framework */,
+				5F239C04215F24CF00EB70B3 /* RxCocoa.framework */,
+				5F239C05215F24CF00EB70B3 /* RxSwift.framework */,
 				96AF02C920A3429600568B2F /* Differentiator.framework */,
 				96AF02C820A3429600568B2F /* RxDataSources.framework */,
 				96AF02C620A3428100568B2F /* RxCocoa.framework */,
@@ -176,6 +261,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		5F239BF7215F24A400EB70B3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96AF029520A32F9800568B2F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -186,6 +278,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		5F239BFB215F24A400EB70B3 /* RxElegantReuse-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F239C03215F24A400EB70B3 /* Build configuration list for PBXNativeTarget "RxElegantReuse-tvOS" */;
+			buildPhases = (
+				5F239BF7215F24A400EB70B3 /* Headers */,
+				5F239BF8215F24A400EB70B3 /* Sources */,
+				5F239BF9215F24A400EB70B3 /* Frameworks */,
+				5F239BFA215F24A400EB70B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RxElegantReuse-tvOS";
+			productName = "RxElegantReuse-tvOS";
+			productReference = 5F239BFC215F24A400EB70B3 /* RxElegantReuse.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5F239C13215F25B000EB70B3 /* Demo-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F239C20215F25BA00EB70B3 /* Build configuration list for PBXNativeTarget "Demo-tvOS" */;
+			buildPhases = (
+				5F239C10215F25B000EB70B3 /* Sources */,
+				5F239C11215F25B000EB70B3 /* Frameworks */,
+				5F239C12215F25B000EB70B3 /* Resources */,
+				5F239C35215F273400EB70B3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F239C2C215F273400EB70B3 /* PBXTargetDependency */,
+			);
+			name = "Demo-tvOS";
+			productName = "Demo-tvOS";
+			productReference = 5F239C14215F25B000EB70B3 /* Demo-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		96AF029720A32F9800568B2F /* RxElegantReuse-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96AF029D20A32F9800568B2F /* Build configuration list for PBXNativeTarget "RxElegantReuse-iOS" */;
@@ -228,10 +357,18 @@
 		96AF027E20A32D5900568B2F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = TStrawberry;
 				TargetAttributes = {
+					5F239BFB215F24A400EB70B3 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
+					5F239C13215F25B000EB70B3 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 					96AF029720A32F9800568B2F = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
@@ -258,11 +395,28 @@
 			targets = (
 				96AF029720A32F9800568B2F /* RxElegantReuse-iOS */,
 				96AF02A320A3306900568B2F /* Demo-iOS */,
+				5F239BFB215F24A400EB70B3 /* RxElegantReuse-tvOS */,
+				5F239C13215F25B000EB70B3 /* Demo-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5F239BFA215F24A400EB70B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F239C12215F25B000EB70B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F239C47215F511200EB70B3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96AF029620A32F9800568B2F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,6 +439,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5F239BF8215F24A400EB70B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F239C0A215F252400EB70B3 /* Events.swift in Sources */,
+				5F239C0F215F252400EB70B3 /* SpecificManager.swift in Sources */,
+				5F239C0E215F252400EB70B3 /* ReusableViewContainer.swift in Sources */,
+				5F239C09215F252400EB70B3 /* ViewObservableSubject.swift in Sources */,
+				5F239C0C215F252400EB70B3 /* InheritPath.swift in Sources */,
+				5F239C0D215F252400EB70B3 /* ReusableView.swift in Sources */,
+				5F239C08215F252400EB70B3 /* ElegantEventsManager.swift in Sources */,
+				5F239C0B215F252400EB70B3 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F239C10215F25B000EB70B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F239C3C215F4BE300EB70B3 /* ViewController.swift in Sources */,
+				5F239C3B215F4BE300EB70B3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96AF029320A32F9800568B2F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +489,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5F239C2C215F273400EB70B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F239BFB215F24A400EB70B3 /* RxElegantReuse-tvOS */;
+			targetProxy = 5F239C2B215F273400EB70B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		96AF02AF20A3306900568B2F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -323,6 +509,112 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5F239C01215F24A400EB70B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = "RxElegantReuse-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.TStrawberry.RxElegantReuse-tvOS";
+				PRODUCT_NAME = RxElegantReuse;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		5F239C02215F24A400EB70B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = "RxElegantReuse-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.TStrawberry.RxElegantReuse-tvOS";
+				PRODUCT_NAME = RxElegantReuse;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		5F239C21215F25BA00EB70B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.TStrawberry.Demo-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		5F239C22215F25BA00EB70B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.TStrawberry.Demo-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
 		96AF028D20A32D5900568B2F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -381,6 +673,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -436,6 +729,7 @@
 				PRODUCT_NAME = RxElegantReuse;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -509,7 +803,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "Demo-iOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
@@ -530,7 +824,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "Demo-iOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
@@ -544,6 +838,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5F239C03215F24A400EB70B3 /* Build configuration list for PBXNativeTarget "RxElegantReuse-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F239C01215F24A400EB70B3 /* Debug */,
+				5F239C02215F24A400EB70B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F239C20215F25BA00EB70B3 /* Build configuration list for PBXNativeTarget "Demo-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F239C21215F25BA00EB70B3 /* Debug */,
+				5F239C22215F25BA00EB70B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		96AF028120A32D5900568B2F /* Build configuration list for PBXProject "RxElegantReuse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

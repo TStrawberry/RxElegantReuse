@@ -33,7 +33,7 @@
         <!--RxSwift.Resources.total : 0-->
         <scene sceneID="TW9-39-Pnk">
             <objects>
-                <tableViewController id="Spa-T9-kzz" customClass="RootViewController" customModule="Demo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Spa-T9-kzz" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="w2r-oB-gWh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,11 +95,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="RxSwift.Resources.total : 0" id="wMX-0g-QWy">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="uLW-Q7-3Tv">
-                            <connections>
-                                <action selector="updateItemClicked:" destination="Spa-T9-kzz" id="bE0-2y-TS3"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="uLW-Q7-3Tv"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5H-Rh-0Kx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -109,7 +105,7 @@
         <!--CollectionViewController-->
         <scene sceneID="Csx-aM-NZ5">
             <objects>
-                <collectionViewController id="OlY-Mc-Rc7" customClass="CollectionViewController" customModule="Demo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="OlY-Mc-Rc7" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="QXT-xd-xBR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,7 +176,7 @@
         <!--TableViewController-->
         <scene sceneID="Fec-dR-Pzb">
             <objects>
-                <tableViewController id="5uF-Oe-2zb" customClass="TableViewController" customModule="Demo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="5uF-Oe-2zb" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JCg-pc-WQc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
