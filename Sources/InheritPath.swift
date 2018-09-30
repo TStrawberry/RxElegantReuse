@@ -7,42 +7,39 @@
 
 import Foundation
 
-
-class InheritPath : Hashable {
+enum InheritPath : Hashable {
     
-    enum InitError : Error {
-        case notExist
-    }
+    case end
     
-    let subInheritPath: InheritPath?
-    var hashValue: Int { return identifier.hashValue }
+    indirect case path(ObjectIdentifier, InheritPath)
     
-    private let identifier: ObjectIdentifier
-    
-    init(_ identifier: ObjectIdentifier, _ subInheritPath: InheritPath? = nil) {
-        self.identifier = identifier
-        self.subInheritPath = subInheritPath
-    }
-    
-    static func instance(from sub: AnyClass, to sup: AnyClass, with path: InheritPath? = nil) throws -> InheritPath {
-        guard let superClass = sub.superclass() else { throw InitError.notExist }
+    enum InitError : Error, CustomDebugStringConvertible {
         
-        if sub == sup {
-            if let `path` = path {
-                return `path`
-            } else {
-                throw InitError.notExist
+        case notExist(sub: AnyClass, sup: AnyClass)
+        
+        var debugDescription: String {
+            switch self {
+            case let .notExist(sub, sup):
+                return "\(sub) does not inherit from \(sup)"
             }
         }
-        
-        let newPath = InheritPath(ObjectIdentifier(sub), path)
-        return try instance(from: superClass, to: sup, with: newPath)
     }
     
-    static func ==(lhs: InheritPath, rhs: InheritPath) -> Bool {
-        return lhs.identifier == rhs.identifier
+    var subInheritPath: InheritPath? {
+        if case InheritPath.path(_, let path) = self,
+            case InheritPath.path(_, .path) = path {
+            return path
+        } else {
+            return nil
+        }
+    }
+    
+    static func instance(from sub: AnyClass, to sup: AnyClass, with path: InheritPath = .end) throws -> InheritPath {
+        
+        guard let superClass = sub.superclass() else { throw InitError.notExist(sub: sub, sup: sub) }
+        if sub == sup { return path }
+        
+        let newPath = InheritPath.path(ObjectIdentifier(sub), path)
+        return try instance(from: superClass, to: sup, with: newPath)
     }
 }
-
-
-
