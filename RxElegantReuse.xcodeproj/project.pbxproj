@@ -54,9 +54,6 @@
 		96C130B020A4966D0052F195 /* RxCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 96C130AC20A4966C0052F195 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96C130B120A4966D0052F195 /* RxSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 96C130AD20A4966C0052F195 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96C130B220A4966D0052F195 /* Differentiator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 96C130AE20A4966C0052F195 /* Differentiator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		96C130B320A496880052F195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02C120A3320B00568B2F /* Main.storyboard */; };
-		96C130B420A4968D0052F195 /* CollectionViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02C020A331DE00568B2F /* CollectionViewHeaderView.xib */; };
-		96C130B520A4968D0052F195 /* TableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02BF20A331DD00568B2F /* TableViewHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,9 +123,6 @@
 		96AF02BC20A330D000568B2F /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		96AF02BD20A330D000568B2F /* ReusableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewContainer.swift; sourceTree = "<group>"; };
 		96AF02BE20A330D000568B2F /* SpecificManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificManager.swift; sourceTree = "<group>"; };
-		96AF02BF20A331DD00568B2F /* TableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewHeaderView.xib; sourceTree = "<group>"; };
-		96AF02C020A331DE00568B2F /* CollectionViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewHeaderView.xib; sourceTree = "<group>"; };
-		96AF02C120A3320B00568B2F /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		96AF02C420A3427500568B2F /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		96AF02C620A3428100568B2F /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		96AF02C820A3429600568B2F /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
@@ -234,9 +228,6 @@
 			children = (
 				96AF02A620A3306900568B2F /* AppDelegate.swift */,
 				96AF02A820A3306900568B2F /* ViewController.swift */,
-				96AF02C120A3320B00568B2F /* Main.storyboard */,
-				96AF02C020A331DE00568B2F /* CollectionViewHeaderView.xib */,
-				96AF02BF20A331DD00568B2F /* TableViewHeaderView.xib */,
 				96AF02AF20A3306900568B2F /* LaunchScreen.storyboard */,
 				96AF02AD20A3306900568B2F /* Assets.xcassets */,
 				96AF02B220A3306900568B2F /* Info.plist */,
@@ -428,11 +419,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96C130B420A4968D0052F195 /* CollectionViewHeaderView.xib in Resources */,
-				96C130B320A496880052F195 /* Main.storyboard in Resources */,
 				96AF02B120A3306900568B2F /* LaunchScreen.storyboard in Resources */,
 				96AF02AE20A3306900568B2F /* Assets.xcassets in Resources */,
-				96C130B520A4968D0052F195 /* TableViewHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +511,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = "RxElegantReuse-tvOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -552,7 +540,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				INFOPLIST_FILE = "RxElegantReuse-tvOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
