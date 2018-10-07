@@ -69,7 +69,7 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 
    
 **For keeping same version number with Swift and RxSwift, there is no 1.0, 2.0 and 3.0.**
-    
+​    
 ## Usage
 
 RxElegantReuse provide only several API for this specific scene.

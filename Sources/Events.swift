@@ -5,12 +5,13 @@
 //  Created by TStrawberry on 2018/4/4.
 //
 
-
 import UIKit
 import RxSwift
 import RxCocoa
 
-public struct Events<C : ReusableViewContainer, R : ReusableView, O: ObservableConvertibleType> {
+/// Represents an observable sequence that comes from flattening all observable sequence on reusableViews.
+/// An `Events` Instance should not fails, so please make sure that you catched the error on reusableView.
+public struct Events<C : ReusableViewContainer, R : ReusableView, O : ObservableConvertibleType> {
     
     enum EventsError : String, Error {
         case unhandleError = "Catch a unhandled error"
@@ -24,10 +25,10 @@ public struct Events<C : ReusableViewContainer, R : ReusableView, O: ObservableC
         self.obs = obs
     }
     
-    /// A chance to transform the target Observable to another.
+    /// Create a new Event instance from the original container, reusableView and observable sequence.
     ///
-    /// - Parameter transformer: Just a transformer.
-    /// - Returns: The new instance.
+    /// - Parameter transformer: A closure with params of the original container, reusableView and observable sequence, retuning an instance of new observable sequence.
+    /// - Returns: A new `Events` instance from transformer closure's result. it keep same `C` and `R` with the original `Events` instance.
     public func with<U : ObservableConvertibleType>(_ transformer: @escaping (C, R, O) -> U) -> Events<C, R, U> {
         let newObs: Observable<(R, U)> = obs.map { (values) -> (R, U) in
             return (values.0, transformer(self.container, values.0, values.1))
@@ -38,6 +39,7 @@ public struct Events<C : ReusableViewContainer, R : ReusableView, O: ObservableC
         return events
     }
     
+    /// Catch error that is on reusableView.
     public func catchEventsError(_ errorHandler: @escaping (Error) -> Observable<O.E>) -> Events<C, R, Observable<O.E>> {
         return with { (container, view, observable) -> Observable<O.E> in
             observable.asObservable()
@@ -50,17 +52,10 @@ public struct Events<C : ReusableViewContainer, R : ReusableView, O: ObservableC
         }
     }
     
-    /// In fact, an instance of Events represents a second-order Observable, so this method is just that `merge`. 😄
-    ///
-    /// - Returns: An Observable.
     private func flatten(_ errorHandler: ((Error) -> Observable<O.E>)? = nil) -> Observable<O.E> {
         return flatten(with: { $2 }, errorHandler)
     }
     
-    /// You want to change the final element from merging?
-    ///
-    /// - Parameter extra: A tranformer.
-    /// - Returns: An Observable.
     private func flatten<T>(with extra: @escaping (C, R, O.E) -> T,
                            _ errorHandler: ((Error) -> Observable<O.E>)? = nil) -> Observable<T> {
         return obs.flatMap({ (values) -> Observable<T> in
