@@ -70,7 +70,7 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 - **Using [Carthage](https://github.com/Carthage/Carthage)**:
 
     ```
-    github "Alamofire/Alamofire" ~> 4.2
+    github "TStrawberry/RxElegantReuse" ~> 4.2
     ```
 
 
