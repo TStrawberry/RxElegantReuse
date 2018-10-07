@@ -64,13 +64,13 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 ## Installation
 - **Using [CocoaPods](https://cocoapods.org)**:
     ```ruby
-    pod 'RxElegantReuse', '~> 4.2'
+    pod 'RxElegantReuse', '~> 4.2.1'
     ```
 
 - **Using [Carthage](https://github.com/Carthage/Carthage)**:
 
     ```
-    github "TStrawberry/RxElegantReuse" ~> 4.2
+    github "TStrawberry/RxElegantReuse" ~> 4.2.1
     ```
 
 
