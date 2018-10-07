@@ -1,4 +1,11 @@
 # RxElegantReuse
+
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/RxElegantReuse.svg)](https://img.shields.io/cocoapods/v/RxElegantReuse.svg)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Platform](https://img.shields.io/cocoapods/p/RxElegantReuse.svg?style=flat)](https://github.com/TStrawberry/RxElegantReuse)
+
+
+
 An elegant and [RxSwift](https://github.com/ReactiveX/RxSwift)-based way to observe events inside of reusable views like UITableViewCell, UICollectionViewCell.
 
 ## Why
@@ -57,19 +64,20 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 ## Installation
 - **Using [CocoaPods](https://cocoapods.org)**:
     ```ruby
-    pod 'RxElegantReuse', '~> 4.1'
+    pod 'RxElegantReuse', '~> 4.2'
     ```
 
 - **Using [Carthage](https://github.com/Carthage/Carthage)**:
-    ```
-    // todo
-    ```
-    
-- **Drag the Sources folder to your project**
 
-   
-**For keeping same version number with Swift and RxSwift, there is no 1.0, 2.0 and 3.0.**
+    ```
+    github "Alamofire/Alamofire" ~> 4.2
+    ```
+
+
+
+**For keeping same major version number with Swift and RxSwift, there is no 1.0, 2.0 and 3.0.**
 ​    
+
 ## Usage
 
 RxElegantReuse provide only several API for this specific scene.
@@ -83,15 +91,12 @@ data.bind(to: tableView.rx.items(cellIdentifier: "identifier", cellType: CustomC
     ...
 }) 
 ```
-- Step 2 : Getting a Event through a Swift 4.0 KeyPath, merging it, and using it.
+- Step 2 : Getting an Events instance through a Swift 4.0 KeyPath and it is an observable sequence.
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
     ...
-    tableView.rx.events(\CustomCell.button.rx.tap)  /// Getting an Event through a KeyPath<ReusableView, ObservableConvertibleType>
-        .merge()                                    /// Merging(required) to get an Observable
-        .map(...)                                   /// Everything is familiar to you from now on
-        .filter(...)
+    tableView.rx.events(\CustomCell.button.rx.tap)
         .subscribe(onNext: { (values) in            
             /// Add some code
         })
