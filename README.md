@@ -103,7 +103,6 @@ override func viewDidLoad() {
         .disposed(by: bag)  
     ...
 }
-
 ```
 **Several extra  APIs for customization and convenience are waiting for your try.**
 
