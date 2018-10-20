@@ -75,7 +75,7 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 
 
 
-**For keeping same major version number with Swift and RxSwift, there is no 1.0, 2.0 and 3.0.**
+**For keeping same major version number with Swift and RxSwift, so no 1.x, 2.x and 3.x.**
 ​    
 
 ## Usage
