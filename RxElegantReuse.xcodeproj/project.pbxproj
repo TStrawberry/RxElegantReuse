@@ -10,12 +10,12 @@
 		5F239C06215F24CF00EB70B3 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C04215F24CF00EB70B3 /* RxCocoa.framework */; };
 		5F239C07215F24CF00EB70B3 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C05215F24CF00EB70B3 /* RxSwift.framework */; };
 		5F239C08215F252400EB70B3 /* ElegantEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B920A330D000568B2F /* ElegantEventsManager.swift */; };
-		5F239C09215F252400EB70B3 /* ViewObservableSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BA20A330D000568B2F /* ViewObservableSubject.swift */; };
+		5F239C09215F252400EB70B3 /* ReusableObservableSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BA20A330D000568B2F /* ReusableObservableSubject.swift */; };
 		5F239C0A215F252400EB70B3 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BC20A330D000568B2F /* Events.swift */; };
 		5F239C0B215F252400EB70B3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B720A330D000568B2F /* Extensions.swift */; };
 		5F239C0C215F252400EB70B3 /* InheritPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B820A330D000568B2F /* InheritPath.swift */; };
-		5F239C0D215F252400EB70B3 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BB20A330D000568B2F /* ReusableView.swift */; };
-		5F239C0E215F252400EB70B3 /* ReusableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BD20A330D000568B2F /* ReusableViewContainer.swift */; };
+		5F239C0D215F252400EB70B3 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BB20A330D000568B2F /* Reusable.swift */; };
+		5F239C0E215F252400EB70B3 /* ReusableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BD20A330D000568B2F /* ReusableContainer.swift */; };
 		5F239C0F215F252400EB70B3 /* SpecificManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BE20A330D000568B2F /* SpecificManager.swift */; };
 		5F239C29215F273400EB70B3 /* RxElegantReuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239BFC215F24A400EB70B3 /* RxElegantReuse.framework */; };
 		5F239C2A215F273400EB70B3 /* RxElegantReuse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239BFC215F24A400EB70B3 /* RxElegantReuse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -31,18 +31,22 @@
 		5F239C45215F4F4C00EB70B3 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C42215F4F4C00EB70B3 /* Differentiator.framework */; };
 		5F239C46215F4F4C00EB70B3 /* Differentiator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F239C42215F4F4C00EB70B3 /* Differentiator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5F239C47215F511200EB70B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02AD20A3306900568B2F /* Assets.xcassets */; };
+		5FF82E98218AF19900BAE902 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF82E97218AF19900BAE902 /* ReusableView.swift */; };
+		5FF82E99218AF19900BAE902 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF82E97218AF19900BAE902 /* ReusableView.swift */; };
+		5FF82E9C218AF3AB00BAE902 /* ReusableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF82E9B218AF3AB00BAE902 /* ReusableViewContainer.swift */; };
+		5FF82E9D218AF3AB00BAE902 /* ReusableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF82E9B218AF3AB00BAE902 /* ReusableViewContainer.swift */; };
 		96AF02A720A3306900568B2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02A620A3306900568B2F /* AppDelegate.swift */; };
 		96AF02A920A3306900568B2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02A820A3306900568B2F /* ViewController.swift */; };
 		96AF02AE20A3306900568B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02AD20A3306900568B2F /* Assets.xcassets */; };
 		96AF02B120A3306900568B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96AF02AF20A3306900568B2F /* LaunchScreen.storyboard */; };
 		96AF02CC20A342DA00568B2F /* RxElegantReuse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AF029820A32F9800568B2F /* RxElegantReuse.framework */; };
 		96AF02CF20A3498900568B2F /* ElegantEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B920A330D000568B2F /* ElegantEventsManager.swift */; };
-		96AF02D020A3498900568B2F /* ViewObservableSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BA20A330D000568B2F /* ViewObservableSubject.swift */; };
+		96AF02D020A3498900568B2F /* ReusableObservableSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BA20A330D000568B2F /* ReusableObservableSubject.swift */; };
 		96AF02D120A3498900568B2F /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BC20A330D000568B2F /* Events.swift */; };
 		96AF02D220A3498900568B2F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B720A330D000568B2F /* Extensions.swift */; };
 		96AF02D320A3498900568B2F /* InheritPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02B820A330D000568B2F /* InheritPath.swift */; };
-		96AF02D420A3498900568B2F /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BB20A330D000568B2F /* ReusableView.swift */; };
-		96AF02D520A3498900568B2F /* ReusableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BD20A330D000568B2F /* ReusableViewContainer.swift */; };
+		96AF02D420A3498900568B2F /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BB20A330D000568B2F /* Reusable.swift */; };
+		96AF02D520A3498900568B2F /* ReusableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BD20A330D000568B2F /* ReusableContainer.swift */; };
 		96AF02D620A3498900568B2F /* SpecificManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF02BE20A330D000568B2F /* SpecificManager.swift */; };
 		96C130A120A476350052F195 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AF02C920A3429600568B2F /* Differentiator.framework */; };
 		96C130A220A476350052F195 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AF02C620A3428100568B2F /* RxCocoa.framework */; };
@@ -106,6 +110,8 @@
 		5F239C36215F27DE00EB70B3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		5F239C41215F4F4C00EB70B3 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/tvOS/RxDataSources.framework; sourceTree = "<group>"; };
 		5F239C42215F4F4C00EB70B3 /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/tvOS/Differentiator.framework; sourceTree = "<group>"; };
+		5FF82E97218AF19900BAE902 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		5FF82E9B218AF3AB00BAE902 /* ReusableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewContainer.swift; sourceTree = "<group>"; };
 		96AF028A20A32D5900568B2F /* RxElegantReuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxElegantReuse.h; sourceTree = "<group>"; };
 		96AF028B20A32D5900568B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96AF029820A32F9800568B2F /* RxElegantReuse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxElegantReuse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,10 +124,10 @@
 		96AF02B720A330D000568B2F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		96AF02B820A330D000568B2F /* InheritPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InheritPath.swift; sourceTree = "<group>"; };
 		96AF02B920A330D000568B2F /* ElegantEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElegantEventsManager.swift; sourceTree = "<group>"; };
-		96AF02BA20A330D000568B2F /* ViewObservableSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewObservableSubject.swift; sourceTree = "<group>"; };
-		96AF02BB20A330D000568B2F /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		96AF02BA20A330D000568B2F /* ReusableObservableSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableObservableSubject.swift; sourceTree = "<group>"; };
+		96AF02BB20A330D000568B2F /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		96AF02BC20A330D000568B2F /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
-		96AF02BD20A330D000568B2F /* ReusableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewContainer.swift; sourceTree = "<group>"; };
+		96AF02BD20A330D000568B2F /* ReusableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableContainer.swift; sourceTree = "<group>"; };
 		96AF02BE20A330D000568B2F /* SpecificManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificManager.swift; sourceTree = "<group>"; };
 		96AF02C420A3427500568B2F /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		96AF02C620A3428100568B2F /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
@@ -179,6 +185,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5FF82E95218AF09B00BAE902 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				96AF02B920A330D000568B2F /* ElegantEventsManager.swift */,
+				96AF02BA20A330D000568B2F /* ReusableObservableSubject.swift */,
+				96AF02BC20A330D000568B2F /* Events.swift */,
+				96AF02B720A330D000568B2F /* Extensions.swift */,
+				96AF02B820A330D000568B2F /* InheritPath.swift */,
+				96AF02BB20A330D000568B2F /* Reusable.swift */,
+				96AF02BD20A330D000568B2F /* ReusableContainer.swift */,
+				96AF02BE20A330D000568B2F /* SpecificManager.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5FF82E96218AF0A300BAE902 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5FF82E97218AF19900BAE902 /* ReusableView.swift */,
+				5FF82E9B218AF3AB00BAE902 /* ReusableViewContainer.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		96AF027D20A32D5900568B2F = {
 			isa = PBXGroup;
 			children = (
@@ -209,14 +239,8 @@
 		96AF028920A32D5900568B2F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				96AF02B920A330D000568B2F /* ElegantEventsManager.swift */,
-				96AF02BA20A330D000568B2F /* ViewObservableSubject.swift */,
-				96AF02BC20A330D000568B2F /* Events.swift */,
-				96AF02B720A330D000568B2F /* Extensions.swift */,
-				96AF02B820A330D000568B2F /* InheritPath.swift */,
-				96AF02BB20A330D000568B2F /* ReusableView.swift */,
-				96AF02BD20A330D000568B2F /* ReusableViewContainer.swift */,
-				96AF02BE20A330D000568B2F /* SpecificManager.swift */,
+				5FF82E95218AF09B00BAE902 /* Core */,
+				5FF82E96218AF0A300BAE902 /* UIKit */,
 				96AF028A20A32D5900568B2F /* RxElegantReuse.h */,
 				96AF028B20A32D5900568B2F /* Info.plist */,
 			);
@@ -431,14 +455,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FF82E99218AF19900BAE902 /* ReusableView.swift in Sources */,
 				5F239C0A215F252400EB70B3 /* Events.swift in Sources */,
 				5F239C0F215F252400EB70B3 /* SpecificManager.swift in Sources */,
-				5F239C0E215F252400EB70B3 /* ReusableViewContainer.swift in Sources */,
-				5F239C09215F252400EB70B3 /* ViewObservableSubject.swift in Sources */,
+				5F239C0E215F252400EB70B3 /* ReusableContainer.swift in Sources */,
+				5F239C09215F252400EB70B3 /* ReusableObservableSubject.swift in Sources */,
 				5F239C0C215F252400EB70B3 /* InheritPath.swift in Sources */,
-				5F239C0D215F252400EB70B3 /* ReusableView.swift in Sources */,
+				5F239C0D215F252400EB70B3 /* Reusable.swift in Sources */,
 				5F239C08215F252400EB70B3 /* ElegantEventsManager.swift in Sources */,
 				5F239C0B215F252400EB70B3 /* Extensions.swift in Sources */,
+				5FF82E9D218AF3AB00BAE902 /* ReusableViewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,14 +481,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FF82E98218AF19900BAE902 /* ReusableView.swift in Sources */,
 				96AF02D120A3498900568B2F /* Events.swift in Sources */,
 				96AF02D620A3498900568B2F /* SpecificManager.swift in Sources */,
-				96AF02D520A3498900568B2F /* ReusableViewContainer.swift in Sources */,
+				96AF02D520A3498900568B2F /* ReusableContainer.swift in Sources */,
 				96AF02CF20A3498900568B2F /* ElegantEventsManager.swift in Sources */,
 				96AF02D320A3498900568B2F /* InheritPath.swift in Sources */,
-				96AF02D420A3498900568B2F /* ReusableView.swift in Sources */,
-				96AF02D020A3498900568B2F /* ViewObservableSubject.swift in Sources */,
+				96AF02D420A3498900568B2F /* Reusable.swift in Sources */,
+				96AF02D020A3498900568B2F /* ReusableObservableSubject.swift in Sources */,
 				96AF02D220A3498900568B2F /* Extensions.swift in Sources */,
+				5FF82E9C218AF3AB00BAE902 /* ReusableViewContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

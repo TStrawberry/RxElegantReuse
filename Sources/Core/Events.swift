@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-/// Represents an observable sequence that comes from flattening all observable sequence on reusableViews.
-/// An `Events` Instance should not fails, so please make sure that you catched the error on reusableView.
-public struct Events<C : ReusableViewContainer, R : ReusableView, O : ObservableConvertibleType> {
+/// Represents an observable sequence that comes from flattening all observable sequence on reusables.
+/// An `Events` instance should not fail, so please make sure that you catched all the errors on reusable.
+public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableConvertibleType> {
     
     enum EventsError : String, Error {
         case unhandleError = "Catch a unhandled error"
@@ -25,9 +25,9 @@ public struct Events<C : ReusableViewContainer, R : ReusableView, O : Observable
         self.obs = obs
     }
     
-    /// Create a new Event instance from the original container, reusableView and observable sequence.
+    /// Create a new Event instance from the original container, reusable and observable sequence.
     ///
-    /// - Parameter transformer: A closure with params of the original container, reusableView and observable sequence, retuning an instance of new observable sequence.
+    /// - Parameter transformer: A closure with params of the original container, reusable and observable sequence, retuning an instance of new observable sequence.
     /// - Returns: A new `Events` instance from transformer closure's result. it keep same `C` and `R` with the original `Events` instance.
     public func with<U : ObservableConvertibleType>(_ transformer: @escaping (C, R, O) -> U) -> Events<C, R, U> {
         let newObs: Observable<(R, U)> = obs.map { (values) -> (R, U) in
@@ -39,9 +39,9 @@ public struct Events<C : ReusableViewContainer, R : ReusableView, O : Observable
         return events
     }
     
-    /// Catch error that is on reusableView.
+    /// Catch error that is on reusable.
     public func catchEventsError(_ errorHandler: @escaping (Error) -> Observable<O.E>) -> Events<C, R, Observable<O.E>> {
-        return with { (container, view, observable) -> Observable<O.E> in
+        return with { (container, reusable, observable) -> Observable<O.E> in
             observable.asObservable()
                 .catchError({ (error) -> Observable<O.E> in
                     return errorHandler(error)
@@ -69,25 +69,28 @@ public struct Events<C : ReusableViewContainer, R : ReusableView, O : Observable
                 .map{ extra(self.container, values.0, $0) }
         })
     }
-
 }
 
-public extension Events where R : Indexed, R.IndexedViewType == C.IndexedType {
+
+public extension Events where R : Indexed, C : IndexedContainer, R.IndexedType == C.IndexedType {
     
     func withIndexPath<T>(_ carried: @escaping (O.E, IndexPath?) -> T) -> Events<C, R, Observable<T>> {
-        return with { (container, reusableView, observable) -> Observable<T> in
+        return with { (container, reusable, observable) -> Observable<T> in
             observable.asObservable()
                 .map { (e) -> T in
-                    carried(e, container.indexPath(for: reusableView as! C.IndexedType))
-                }
+                    carried(e, container.indexPath(for: reusable as! C.IndexedType))
+            }
         }
     }
     
+}
+
+public extension Events where R : Indexed, C : ModelIndexedContainer, R.IndexedType == C.IndexedType {
     func withModel<T, M>(with modelType: M.Type, _ carried: @escaping (O.E, M?) -> T) -> Events<C, R, Observable<T>> {
-        return with { (container, reusableView, observable) -> Observable<T> in
+        return with { (container, reusable, observable) -> Observable<T> in
             observable.asObservable()
                 .map { (e) -> T in
-                    if let indexPath = container.indexPath(for: reusableView as! C.IndexedType) {
+                    if let indexPath = container.indexPath(for: reusable as! C.IndexedType) {
                         return carried(e, try? container.model(at: indexPath))
                     }
                     return carried(e, nil)

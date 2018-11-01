@@ -5,29 +5,30 @@
 //  Created by TStrawberry on 2018/4/4.
 //
 
-import UIKit
+import Foundation
 import RxSwift
 
-typealias ViewSet = NSHashTable<UIView>
+typealias ObjectSet = NSHashTable<NSObject>
 
-class SpecificManager<C : ReusableViewContainer> {
+class SpecificManager<C : ReusableContainer> {
     
-    private lazy var viewObservableSubjects: [AnyKeyPath: ViewObservableSubject<C, Any>] = { return [:] }()
+    private lazy var reusableObservableSubjects: [AnyKeyPath: ReusableObservableSubject<C, Any>] = { return [:] }()
     private lazy var subClassManager: [InheritPath: SpecificManager<C>] = { return [:] }()
-    private lazy var views: ViewSet = { return ViewSet(options: .weakMemory) }()
+    private lazy var objects: ObjectSet = { return ObjectSet(options: .weakMemory) }()
     
-    func add<R : ReusableView>(_ reusableView: R, with path: InheritPath) {
+    func add<R : ReusableObject>(_ reusableObject: R, with path: InheritPath) {
         
         if let subInheritPath = path.subInheritPath {
-            subManager(for: subInheritPath).add(reusableView, with: subInheritPath)
+            
+            subManager(for: subInheritPath).add(reusableObject, with: subInheritPath)
         } else {
-            views.add(reusableView)
+            objects.add(reusableObject)
         }
         
-        viewObservableSubjects.values.forEach { $0.emitViewObservable(on: reusableView) }
+        reusableObservableSubjects.values.forEach { $0.emitReusableObservable(on: reusableObject) }
     }
     
-    func events<R : ReusableView, O : ObservableConvertibleType>(for keyPath: KeyPath<R, O>, inheritPath: InheritPath) -> Events<C, R, O> {
+    func events<R : ReusableObject, O : ObservableConvertibleType>(for keyPath: KeyPath<R, O>, inheritPath: InheritPath) -> Events<C, R, O> {
         
         if let subInheritPath = inheritPath.subInheritPath {
             return subManager(for: subInheritPath).events(for: keyPath, inheritPath: subInheritPath)
@@ -49,12 +50,12 @@ class SpecificManager<C : ReusableViewContainer> {
         return subManager
     }
     
-    private func elementSequence<R : ReusableView, O>(for keyPath: KeyPath<R, O>) -> ViewObservableSubject<C, Any> {
+    private func elementSequence<R : ReusableObject, O>(for keyPath: KeyPath<R, O>) -> ReusableObservableSubject<C, Any> {
         
-        if let viewObservableSubject = viewObservableSubjects[keyPath] { return viewObservableSubject }
+        if let reusableObservableSubject = reusableObservableSubjects[keyPath] { return reusableObservableSubject }
         
-        let viewObservableSubject = ViewObservableSubject<C, Any> { ($0 as! R)[keyPath: keyPath] }
-        viewObservableSubject.emitViewObservables(on: AnyCollection(views.allObjects))
+        let viewObservableSubject = ReusableObservableSubject<C, Any> { ($0 as! R)[keyPath: keyPath] }
+        viewObservableSubject.emitReusableObservables(on: AnyCollection(objects.allObjects))
         _ = subClassManager.values
             .map { $0.elementSequence(for: keyPath) }
             .merge()?
@@ -63,9 +64,8 @@ class SpecificManager<C : ReusableViewContainer> {
             }
             .bind(to: viewObservableSubject.asObserver())
         
-        viewObservableSubjects[keyPath] = viewObservableSubject
+        reusableObservableSubjects[keyPath] = viewObservableSubject
         return viewObservableSubject
-        
     }
     
 }

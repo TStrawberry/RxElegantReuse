@@ -1,45 +1,33 @@
 //
-//  ReusableViewContainer.swift
+//  ReusableContainer.swift
 //  RxElegantReuse
 //
 //  Created by TStrawberry on 2018/4/4.
 //
 
-import UIKit
+import Foundation
 import RxSwift
 import RxCocoa
 
-public protocol ReusableViewContainer : NSObjectProtocol {
+public protocol ReusableContainer : NSObjectProtocol { }
+
+public protocol IndexedContainer : ReusableContainer {
     
-    associatedtype IndexedType: IndexedView
+    associatedtype IndexedType: IndexedObject
     
     func indexPath(for cell: IndexedType) -> IndexPath?
+}
+
+public protocol ModelIndexedContainer : IndexedContainer {
     
     func model<T>(at indexPath: IndexPath) throws -> T
 }
 
-extension UITableView : ReusableViewContainer {
-    
-    public typealias IndexedType = UITableViewCell
-    
-    public func model<T>(at indexPath: IndexPath) throws -> T {
-        return try rx.model(at: indexPath)
-    }
-}
 
-extension UICollectionView : ReusableViewContainer {
-    
-    public typealias IndexedType = UICollectionViewCell
-    
-    public func model<T>(at indexPath: IndexPath) throws -> T {
-        return try rx.model(at: indexPath)
-    }
-    
-}
 
 fileprivate var elegantEventsManagerContext: UInt8 = 0
 
-extension ReusableViewContainer where Self : UIScrollView {
+extension ReusableContainer {
     
     var elegantManager: ElegantEventsManager<Self> {
         
@@ -57,16 +45,16 @@ extension ReusableViewContainer where Self : UIScrollView {
         }
     }
     
-    func add<R : ReusableView>(_ view: R) {
-        elegantManager.add(view)
+    func add<R : ReusableObject>(_ reusableObject: R) {
+        elegantManager.add(reusableObject)
     }
     
 }
 
 
-public extension Reactive where Base : UIScrollView & ReusableViewContainer {
+public extension Reactive where Base : ReusableContainer {
     
-    func events<R : ReusableView, O : ObservableConvertibleType>(_ keyPath : KeyPath<R, O>) -> Events<Base, R, O> {
+    func events<R : ReusableObject, O : ObservableConvertibleType>(_ keyPath : KeyPath<R, O>) -> Events<Base, R, O> {
         #if DEBUG
             MainScheduler.ensureExecutingOnScheduler()
         #endif
