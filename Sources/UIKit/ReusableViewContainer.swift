@@ -8,6 +8,14 @@
 
 import UIKit
 
+extension UITableView : IndexedContainer { }
+
+extension UICollectionView: IndexedContainer { }
+
+#if canImport(RxCocoa)
+
+import RxCocoa
+
 extension UITableView : ModelIndexedContainer {
     
     public typealias IndexedType = UITableViewCell
@@ -27,3 +35,6 @@ extension UICollectionView : ModelIndexedContainer {
     }
     
 }
+
+#endif
+

@@ -62,7 +62,7 @@ class SpecificManager<C : ReusableContainer> {
             .mapFilterNil {
                 (values) -> (R, O)? in values ?>> (R, O).self
             }
-            .bind(to: viewObservableSubject.asObserver())
+            .subscribe(viewObservableSubject.asObserver())
         
         reusableObservableSubjects[keyPath] = viewObservableSubject
         return viewObservableSubject

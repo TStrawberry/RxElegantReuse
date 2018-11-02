@@ -5,9 +5,8 @@
 //  Created by TStrawberry on 2018/4/4.
 //
 
-import UIKit
+import Foundation
 import RxSwift
-import RxCocoa
 
 /// Represents an observable sequence that comes from flattening all observable sequence on reusables.
 /// An `Events` instance should not fail, so please make sure that you catched all the errors on reusable.
