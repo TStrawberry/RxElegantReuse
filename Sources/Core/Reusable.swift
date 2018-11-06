@@ -18,3 +18,11 @@ public protocol Indexed : Reusable {
 
 public typealias ReusableObject = NSObject & Reusable
 public typealias IndexedObject = ReusableObject & Indexed
+
+public extension Reusable where Self : NSObject {
+    @discardableResult
+    func managed<T : ReusableContainer>(by container: T?) -> Self {
+        container?.add(self)
+        return self
+    }
+}

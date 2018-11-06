@@ -54,9 +54,7 @@ extension ReusableContainer {
 public extension Reactive where Base : ReusableContainer {
     
     func events<R : ReusableObject, O : ObservableConvertibleType>(_ keyPath : KeyPath<R, O>) -> Events<Base, R, O> {
-        #if DEBUG
-            MainScheduler.ensureExecutingOnScheduler()
-        #endif
+        debugOnly { MainScheduler.ensureExecutingOnScheduler() }
         var events = base.elegantManager.events(for: keyPath)
         events.container = base
         return events

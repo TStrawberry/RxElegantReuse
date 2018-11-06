@@ -33,10 +33,10 @@ extension ObservableType where E : OptionalType {
     }
 }
 
-
-
-
-
+// Originally from here: https://github.com/vapor/vapor/blob/74a46ecacca51d326a1e8cf4b7967827765f05bf/Sources/Vapor/Error/Error.swift#L66-L68
+func debugOnly(_ body: () -> Void) {
+    assert({ body(); return true }())
+}
 
 
 precedencegroup TupleTransfromPrecedence {
