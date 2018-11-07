@@ -80,8 +80,8 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 
 ## Usage
 
-RxElegantReuse provide only several API for this specific scene.
-- Step 1 : Making the reusable view managed by it's container(UITableView/UiCollectionView).
+RxElegantReuse provides only several API for this specific scene.
+- Step 1 : Making the reusable view managed by its container(UITableView/UiCollectionView).
 ```swift
 data.bind(to: tableView.rx.items(cellIdentifier: "identifier", cellType: CustomCell.self), curriedArgument: {
   [unowned tableView]
@@ -104,7 +104,7 @@ override func viewDidLoad() {
     ...
 }
 ```
-**Several extra  APIs for customization and convenience are waiting for your try.**
+**Several extra  API for customization and convenience are waiting for your try.**
 
 ## License
 RxElegantReuse is under MIT license.
