@@ -85,14 +85,27 @@ public extension Events where R : Indexed, C : IndexedContainer, R.IndexedType =
 }
 
 public extension Events where R : Indexed, C : ModelIndexedContainer, R.IndexedType == C.IndexedType {
+    
+    /// Create a new Events instance with model from the Reusable
+    /// The result could emit an Error event which is from ModelIndexedContainer.model<T>(at:) throws -> T
+    ///
+    /// - Parameters:
+    ///   - modelType: The model's type
+    ///   - carried: A transfromer from model to the value you wanna
+    /// - Returns: A new Events instance with new type T
     func withModel<T, M>(with modelType: M.Type, _ carried: @escaping (O.E, M?) -> T) -> Events<C, R, Observable<T>> {
         return with { (container, reusable, observable) -> Observable<T> in
             observable.asObservable()
-                .map { (e) -> T in
+                .flatMap { (e) -> Observable<T> in
                     if let indexPath = container.indexPath(for: reusable as! C.IndexedType) {
-                        return carried(e, try? container.model(at: indexPath))
+                        do {
+                            let model: T = try container.model(at: indexPath)
+                            return carried(e, model)
+                        } catch let error {
+                            return Observable.error(error)
+                        }
                     }
-                    return carried(e, nil)
+                    return Observable.just(carried(e, nil))
                 }
         }
     }
