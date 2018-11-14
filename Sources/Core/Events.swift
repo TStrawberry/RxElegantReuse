@@ -99,8 +99,8 @@ public extension Events where R : Indexed, C : ModelIndexedContainer, R.IndexedT
                 .flatMap { (e) -> Observable<T> in
                     if let indexPath = container.indexPath(for: reusable as! C.IndexedType) {
                         do {
-                            let model: T = try container.model(at: indexPath)
-                            return carried(e, model)
+                            let model: M = try container.model(at: indexPath)
+                            return Observable.just(carried(e, model))
                         } catch let error {
                             return Observable.error(error)
                         }
