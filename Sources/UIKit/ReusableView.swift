@@ -2,7 +2,7 @@
 //  ReusableView.swift
 //  RxElegantReuse
 //
-//  Created by Todd on 2018/11/1.
+//  Created by TStrawberry on 2018/11/1.
 //  Copyright © 2018 TStrawberry. All rights reserved.
 //
 

@@ -3,6 +3,7 @@
 //  RxElegantReuse
 //
 //  Created by TStrawberry on 2018/4/4.
+//  Copyright © 2018 TStrawberry. All rights reserved.
 //
 
 import Foundation
