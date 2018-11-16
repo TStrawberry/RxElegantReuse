@@ -31,18 +31,12 @@ extension ReusableContainer {
     
     var elegantManager: ElegantEventsManager<Self> {
         
-        get {
-            if let elegantMgr = objc_getAssociatedObject(self, &elegantEventsManagerContext) as? ElegantEventsManager<Self> {
-                return elegantMgr
-            }
-            let elegantMgr = ElegantEventsManager<Self>()
-            objc_setAssociatedObject(self, &elegantEventsManagerContext, elegantMgr, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        if let elegantMgr = objc_getAssociatedObject(self, &elegantEventsManagerContext) as? ElegantEventsManager<Self> {
             return elegantMgr
         }
-        
-        set {
-            objc_setAssociatedObject(self, &elegantEventsManagerContext, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
+        let elegantMgr = ElegantEventsManager<Self>()
+        objc_setAssociatedObject(self, &elegantEventsManagerContext, elegantMgr, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return elegantMgr
     }
     
     func add<R : ReusableObject>(_ reusableObject: R) {
