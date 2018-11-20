@@ -30,7 +30,7 @@ class DemoTableViewCellOne: UITableViewCell {
     
     private let stackView: UIStackView
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         button = UIButton()
         button.setTitleColor(UIColor(named: "buttonTitleDefault"), for: .normal)
         button.setTitle("Button", for: .normal)

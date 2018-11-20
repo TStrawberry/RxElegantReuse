@@ -37,8 +37,8 @@ class CollectionViewController: UICollectionViewController {
         #if os(iOS)
         collectionView?.register(DemoStepperCollectionViewCell.self, forCellWithReuseIdentifier: "DemoStepperCollectionViewCell")
         #endif
-        collectionView?.register(CollectionViewHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderView")
-        collectionView?.register(CollectionViewFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView")
+        collectionView?.register(CollectionViewHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderView")
+        collectionView?.register(CollectionViewFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView")
         
         
         #if os(tvOS)
@@ -77,13 +77,13 @@ class CollectionViewController: UICollectionViewController {
         dataSource.configureSupplementaryView = {
             (_, collectionView, kind, indexPath) in
             
-            if kind == UICollectionElementKindSectionHeader {
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderView", for: indexPath)
+            if kind == UICollectionView.elementKindSectionHeader {
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderView", for: indexPath)
                     .managed(by: collectionView)
                 (header as? CollectionViewHeaderView)?.section = indexPath.section
                 return header
-            } else if kind == UICollectionElementKindSectionFooter {
-                return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView", for: indexPath)
+            } else if kind == UICollectionView.elementKindSectionFooter {
+                return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionViewFooterView", for: indexPath)
                     .managed(by: collectionView)
             } else {
                 fatalError()
