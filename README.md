@@ -81,21 +81,21 @@ There maybe other ways,but no essential difference.So let's move to RxElegantReu
 ## Usage
 
 RxElegantReuse provides only several API for this specific scene.
-- Step 1 : Making the reusable view managed by its container(UITableView/UiCollectionView).
-```swift
-data.bind(to: tableView.rx.items(cellIdentifier: "identifier", cellType: CustomCell.self), curriedArgument: {
-  [unowned tableView]
-    (index, data, cell) in
-    ...
-    cell.managed(by: tableView)
-    ...
-}) 
-```
-- Step 2 : Getting an Events instance through a Swift 4.0 KeyPath and it is an observable sequence.
+
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
     ...
+    data.bind(to: tableView.rx.items(cellIdentifier: "identifier", cellType: CustomCell.self), curriedArgument: {
+      [unowned tableView]
+        (index, data, cell) in
+        ...
+        // Step 1 : Making the reusable view managed by its container(UITableView/UiCollectionView).
+        cell.managed(by: tableView)
+        ...
+    })
+    
+    // Step 2 : Getting an Events instance through a Swift 4.0 KeyPath and it is an observable sequence.
     tableView.rx.events(\CustomCell.button.rx.tap)
         .subscribe(onNext: { (values) in            
             /// Add some code
