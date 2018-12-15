@@ -38,6 +38,8 @@
 		5F808FFB21A2BA6B002E0173 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F808FF921A2BA6B002E0173 /* CollectionViewController.swift */; };
 		5F808FFD21A2BAB2002E0173 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F808FFC21A2BAB2002E0173 /* Views.swift */; };
 		5F808FFE21A2BAB2002E0173 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F808FFC21A2BAB2002E0173 /* Views.swift */; };
+		5FCB694621C4B9CE00A7A25C /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCB694521C4B9CE00A7A25C /* Catch.swift */; };
+		5FCB694721C4B9CE00A7A25C /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCB694521C4B9CE00A7A25C /* Catch.swift */; };
 		5FF82E98218AF19900BAE902 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF82E97218AF19900BAE902 /* ReusableView.swift */; };
 		5FF82E99218AF19900BAE902 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF82E97218AF19900BAE902 /* ReusableView.swift */; };
 		5FF82E9C218AF3AB00BAE902 /* ReusableViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF82E9B218AF3AB00BAE902 /* ReusableViewContainer.swift */; };
@@ -120,6 +122,7 @@
 		5F808FF621A2B9FD002E0173 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5F808FF921A2BA6B002E0173 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		5F808FFC21A2BAB2002E0173 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		5FCB694521C4B9CE00A7A25C /* Catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
 		5FF82E97218AF19900BAE902 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		5FF82E9B218AF3AB00BAE902 /* ReusableViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewContainer.swift; sourceTree = "<group>"; };
 		96AF028A20A32D5900568B2F /* RxElegantReuse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxElegantReuse.h; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 				96AF02B920A330D000568B2F /* ElegantEventsManager.swift */,
 				96AF02BA20A330D000568B2F /* ReusableObservableSubject.swift */,
 				96AF02BC20A330D000568B2F /* Events.swift */,
+				5FCB694521C4B9CE00A7A25C /* Catch.swift */,
 				96AF02B720A330D000568B2F /* Extensions.swift */,
 				96AF02B820A330D000568B2F /* InheritPath.swift */,
 				96AF02BB20A330D000568B2F /* Reusable.swift */,
@@ -476,6 +480,7 @@
 				5F239C0C215F252400EB70B3 /* InheritPath.swift in Sources */,
 				5F239C0D215F252400EB70B3 /* Reusable.swift in Sources */,
 				5F239C08215F252400EB70B3 /* ElegantEventsManager.swift in Sources */,
+				5FCB694721C4B9CE00A7A25C /* Catch.swift in Sources */,
 				5F239C0B215F252400EB70B3 /* Extensions.swift in Sources */,
 				5FF82E9D218AF3AB00BAE902 /* ReusableViewContainer.swift in Sources */,
 			);
@@ -505,6 +510,7 @@
 				96AF02D320A3498900568B2F /* InheritPath.swift in Sources */,
 				96AF02D420A3498900568B2F /* Reusable.swift in Sources */,
 				96AF02D020A3498900568B2F /* ReusableObservableSubject.swift in Sources */,
+				5FCB694621C4B9CE00A7A25C /* Catch.swift in Sources */,
 				96AF02D220A3498900568B2F /* Extensions.swift in Sources */,
 				5FF82E9C218AF3AB00BAE902 /* ReusableViewContainer.swift in Sources */,
 			);

@@ -14,7 +14,7 @@ import RxSwift
 public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableConvertibleType> {
     
     enum EventsError : String, Error {
-        case unhandleError = "A unhandled error"
+        case unhandleError = "An unhandled error"
     }
     
     weak var container: C!
@@ -31,7 +31,7 @@ public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableCo
     /// - Returns: A new `Events` instance from transformer closure's result. it keep same `C` and `R` with the original `Events` instance.
     public func with<U : ObservableConvertibleType>(_ transformer: @escaping (C, R, O) -> U) -> Events<C, R, U> {
         let newObs: Observable<(R, U)> = obs.map { (values) -> (R, U) in
-            return (values.0, transformer(self.container, values.0, values.1))
+            (values.0, transformer(self.container, values.0, values.1))
         }
         
         var events = Events<C, R, U>(newObs)
@@ -43,31 +43,25 @@ public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableCo
     public func catchEventsError(_ errorHandler: @escaping (Error) -> Observable<O.E>) -> Events<C, R, Observable<O.E>> {
         return with { (container, reusable, observable) -> Observable<O.E> in
             observable.asObservable()
-                .catchError({ (error) -> Observable<O.E> in
-                    return errorHandler(error)
-                })
-                .do(onError: { (error) in
-                    fatalError(error.localizedDescription)
-                })
+                .catchError(errorHandler)
+                .do(onError: { fatalError($0.localizedDescription) })
         }
     }
     
-    private func flatten(_ errorHandler: ((Error) -> Observable<O.E>)? = nil) -> Observable<O.E> {
+    private func flatten(_ errorHandler: @escaping (Error) -> Observable<O.E> = Observable.error) -> Observable<O.E> {
         return flatten(with: { $2 }, errorHandler)
     }
     
     private func flatten<T>(with extra: @escaping (C, R, O.E) -> T,
-                           _ errorHandler: ((Error) -> Observable<O.E>)? = nil) -> Observable<T> {
-        return obs.flatMap({ (values) -> Observable<T> in
+                            _ errorHandler: @escaping (Error) -> Observable<O.E>) -> Observable<T> {
+        
+        return obs.flatMap { (values) -> Observable<T> in
             values.1.asObservable()
-                .catchError({ (error) -> Observable<O.E> in
-                    return errorHandler?(error) ?? Observable.error(error)
-                })
-                .do(onError: { (error) in
-                    fatalError(error.localizedDescription)
-                })
-                .map{ extra(self.container, values.0, $0) }
-        })
+                .catchError(errorHandler)
+                .do(onError: { fatalError($0.localizedDescription) })
+                .map(curry(extra)(self.container)(values.0))
+        }
+        
     }
 }
 
@@ -77,9 +71,7 @@ public extension Events where R : Indexed, C : IndexedContainer, R.IndexedType =
     func withIndexPath<T>(_ carried: @escaping (IndexPath?, O.E) -> T) -> Events<C, R, Observable<T>> {
         return with { (container, reusable, observable) -> Observable<T> in
             observable.asObservable()
-                .map { (e) -> T in
-                    carried(container.indexPath(for: reusable as! C.IndexedType), e)
-            }
+                .map { carried(container.indexPath(for: reusable as! C.IndexedType), $0) }
         }
     }
     
@@ -98,24 +90,24 @@ public extension Events where R : Indexed, C : ModelIndexedContainer, R.IndexedT
     ///   - modelType: The model's type
     ///   - carried: A transfromer from model to the value you wanna
     /// - Returns: A new Events instance with new type T
-    func withModel<T, M>(with modelType: M.Type, _ carried: @escaping (O.E, M?) -> T) -> Events<C, R, Observable<T>> {
+    func withModel<T, M>(with modelType: M.Type, _ carried: @escaping ( M?, O.E) -> T) -> Events<C, R, Observable<T>> {
         return with { (container, reusable, observable) -> Observable<T> in
             observable.asObservable()
                 .flatMap { (e) -> Observable<T> in
                     if let indexPath = container.indexPath(for: reusable as! C.IndexedType) {
                         do {
                             let model: M = try container.model(at: indexPath)
-                            return Observable.just(carried(e, model))
+                            return Observable.just(carried(model, e))
                         } catch let error {
                             return Observable.error(error)
                         }
                     }
-                    return Observable.just(carried(e, nil))
+                    return Observable.just(carried(nil, e))
                 }
         }
     }
     
-    public func withModel<M>(with modelType: M.Type) -> Events<C, R, Observable<(O.E, M?)>> {
+    public func withModel<M>(with modelType: M.Type) -> Events<C, R, Observable<(M?, O.E)>> {
         return withModel(with: modelType, { ($0, $1) })
     }
     
