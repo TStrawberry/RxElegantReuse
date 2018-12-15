@@ -14,7 +14,7 @@ import RxSwift
 public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableConvertibleType> {
     
     enum EventsError : String, Error {
-        case unhandleError = "Catch a unhandled error"
+        case unhandleError = "A unhandled error"
     }
     
     weak var container: C!
@@ -74,13 +74,17 @@ public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableCo
 
 public extension Events where R : Indexed, C : IndexedContainer, R.IndexedType == C.IndexedType {
     
-    func withIndexPath<T>(_ carried: @escaping (O.E, IndexPath?) -> T) -> Events<C, R, Observable<T>> {
+    func withIndexPath<T>(_ carried: @escaping (IndexPath?, O.E) -> T) -> Events<C, R, Observable<T>> {
         return with { (container, reusable, observable) -> Observable<T> in
             observable.asObservable()
                 .map { (e) -> T in
-                    carried(e, container.indexPath(for: reusable as! C.IndexedType))
+                    carried(container.indexPath(for: reusable as! C.IndexedType), e)
             }
         }
+    }
+    
+    func withIndexPath() -> Events<C, R, Observable<(IndexPath?, O.E)>> {
+        return withIndexPath { ($0, $1) }
     }
     
 }
@@ -110,6 +114,11 @@ public extension Events where R : Indexed, C : ModelIndexedContainer, R.IndexedT
                 }
         }
     }
+    
+    public func withModel<M>(with modelType: M.Type) -> Events<C, R, Observable<(O.E, M?)>> {
+        return withModel(with: modelType, { ($0, $1) })
+    }
+    
 }
 
 extension Events: ObservableType {

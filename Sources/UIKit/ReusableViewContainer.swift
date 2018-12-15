@@ -7,14 +7,11 @@
 //
 
 import UIKit
+import RxCocoa
 
 extension UITableView : IndexedContainer { }
 
 extension UICollectionView: IndexedContainer { }
-
-#if canImport(RxCocoa)
-
-import RxCocoa
 
 extension UITableView : ModelIndexedContainer {
     
@@ -35,6 +32,3 @@ extension UICollectionView : ModelIndexedContainer {
     }
     
 }
-
-#endif
-
