@@ -121,7 +121,7 @@ public extension Events where R : Indexed, C : ModelIndexedContainer, R.IndexedT
     
 }
 
-extension Events: ObservableType {
+extension Events : ObservableType {
     public typealias E = O.E
     
     public func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, Events.E == O.E {

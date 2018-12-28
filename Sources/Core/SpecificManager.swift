@@ -55,18 +55,18 @@ class SpecificManager<C : ReusableContainer> {
         
         if let reusableObservableSubject = reusableObservableSubjects[keyPath] { return reusableObservableSubject }
         
-        let viewObservableSubject = ReusableObservableSubject<C, Any> { ($0 as! R)[keyPath: keyPath] }
-        viewObservableSubject.emitReusableObservables(on: AnyCollection(objects.allObjects))
+        let reusableObservableSubject = ReusableObservableSubject<C, Any> { ($0 as! R)[keyPath: keyPath] }
+        reusableObservableSubject.emitReusableObservables(on: AnyCollection(objects.allObjects))
         _ = subClassManager.values
             .map { $0.elementSequence(for: keyPath) }
             .merge()?
             .mapFilterNil {
                 (values) -> (R, O)? in values ?>> (R, O).self
             }
-            .subscribe(viewObservableSubject.asObserver())
+            .subscribe(reusableObservableSubject.asObserver())
         
-        reusableObservableSubjects[keyPath] = viewObservableSubject
-        return viewObservableSubject
+        reusableObservableSubjects[keyPath] = reusableObservableSubject
+        return reusableObservableSubject
     }
     
 }
