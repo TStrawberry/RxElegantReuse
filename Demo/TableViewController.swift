@@ -43,15 +43,15 @@ class TableViewController: UITableViewController {
         
         #if os(tvOS)
         tableView.rx.events(\DemoTableViewCellOne.button.rx.primaryAction)
-            .withIndexPath { $1 }
+            .withIndexPath { $0 }
             .subscribe(onNext: { (indexPath) in
-                print(indexPath)
+                print(#file, #line, "Button event with indexPath: \(indexPath)")
             })
             .disposed(by: bag)
         
         tableView.rx.events(\TableViewHeaderView.button.rx.primaryAction)
             .subscribe(onNext: { (_) in
-                print("Button in header")
+                print(#file, #line, "Button evet in header")
             })
             .disposed(by: bag)
         #endif
@@ -59,28 +59,28 @@ class TableViewController: UITableViewController {
         #if os(iOS)
         tableView.rx.events(\TableViewHeaderView.button.rx.tap)
             .subscribe(onNext: { (_) in
-                print("header")
+                print(#file, #line, "Button event in header")
             })
             .disposed(by: bag)
         
         tableView.rx.events(\DemoTableViewCellOne.stepper.rx.value.changed)
             .withIndexPath { ($0, $1) }
             .subscribe(onNext: { (values) in
-                print(values)
+                print(#file, #line, "Stepper event with indexPath: \(values.0) and value: \(values.1)")
             })
             .disposed(by: bag)
         
         tableView.rx.events(\DemoTableViewCellOne.button.rx.tap)
-            .withIndexPath { $1 }
+            .withIndexPath { indexPath, _ in indexPath }
             .subscribe(onNext: { (indexPath) in
-                print(indexPath)
+                print(#file, #line, "Button event with indexPath: \(indexPath)")
             })
             .disposed(by: bag)
         
         tableView.rx.events(\DemoTableViewCellOne.slider.rx.value.changed)
             .withModel(with: String.self, { $1 })
             .subscribe(onNext: { (value) in
-                print(value)
+                print(#file, #line, "Slider event with value: \(value)")
             })
             .disposed(by: bag)
         
@@ -95,7 +95,7 @@ class TableViewController: UITableViewController {
         
         tableView.rx.events(\DemoTableViewCellOne.switcher.rx.isOn.changed)
             .subscribe(onNext: { (isOn) in
-                print(isOn)
+                print(#file, #line, "Switcher event with isOn: \(isOn)")
             })
             .disposed(by: bag)
         

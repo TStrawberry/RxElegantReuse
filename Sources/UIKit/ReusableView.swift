@@ -9,23 +9,26 @@
 import UIKit
 import RxSwift
 
-extension UITableViewCell : Indexed {
-    public typealias BaseReusableType = UITableViewCell
-    public typealias IndexedType = UITableViewCell
+extension UITableViewCell : IndexedType {
+    public typealias Container = UITableView
+    public typealias BaseReusable = UITableViewCell
+    public typealias Indexed = UITableViewCell
 }
 
-extension UITableViewHeaderFooterView : Reusable {
-    public typealias BaseReusableType = UITableViewHeaderFooterView
+extension UITableViewHeaderFooterView : ReusableType {
+    public typealias Container = UITableView
+    public typealias BaseReusable = UITableViewHeaderFooterView
 }
 
-extension UICollectionReusableView : Reusable {
-    public typealias BaseReusableType = UICollectionReusableView
+extension UICollectionReusableView : ReusableType {
+    public typealias Container = UICollectionView
+    public typealias BaseReusable = UICollectionReusableView
 }
 
-extension UICollectionViewCell : Indexed {
-    public typealias IndexedType = UICollectionViewCell
+extension UICollectionViewCell : IndexedType {
+    public typealias Indexed = UICollectionViewCell
 }
 
-public typealias ReusableView = UIView & Reusable
-public typealias IndexedView = ReusableView & Indexed
+public typealias ReusableView = UIView & ReusableType
+public typealias IndexedView = ReusableView & IndexedType
 

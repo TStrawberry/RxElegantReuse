@@ -11,17 +11,17 @@ import RxSwift
 
 /// Represents an observable sequence that comes from flattening all observable sequence on reusables.
 /// An `Events` instance should not fail, so please make sure that you catched all the errors on reusable.
-public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableConvertibleType> {
+public struct Events<Container : ReusableContainerType, ReusableObject : ReusableObjectType, ObservableConvertible : ObservableConvertibleType> {
     
     enum EventsError : String, Error {
-        case unhandleError = "A unhandled error"
+        case unhandleError = "An unhandled error"
     }
     
-    weak var container: C!
+    weak var container: Container!
     
-    private let obs: Observable<(R, O)>
+    private let obs: Observable<(ReusableObject, ObservableConvertible)>
     
-    init(_ obs: Observable<(R, O)>) {
+    init(_ obs: Observable<(ReusableObject, ObservableConvertible)>) {
         self.obs = obs
     }
     
@@ -29,21 +29,22 @@ public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableCo
     ///
     /// - Parameter transformer: A closure with params of the original container, reusable and observable sequence, retuning an instance of new observable sequence.
     /// - Returns: A new `Events` instance from transformer closure's result. it keep same `C` and `R` with the original `Events` instance.
-    public func with<U : ObservableConvertibleType>(_ transformer: @escaping (C, R, O) -> U) -> Events<C, R, U> {
-        let newObs: Observable<(R, U)> = obs.map { (values) -> (R, U) in
+    public func with<U : ObservableConvertibleType>(_ transformer: @escaping (Container, ReusableObject, ObservableConvertible) -> U) -> Events<Container, ReusableObject, U> {
+        
+        let newObs: Observable<(ReusableObject, U)> = obs.map { (values) -> (ReusableObject, U) in
             return (values.0, transformer(self.container, values.0, values.1))
         }
         
-        var events = Events<C, R, U>(newObs)
+        var events = Events<Container, ReusableObject, U>(newObs)
         events.container = container
         return events
     }
     
     /// Catch error that is on reusable.
-    public func catchEventsError(_ errorHandler: @escaping (Error) -> Observable<O.E>) -> Events<C, R, Observable<O.E>> {
-        return with { (container, reusable, observable) -> Observable<O.E> in
+    public func catchEventsError(_ errorHandler: @escaping (Error) -> Observable<ObservableConvertible.Element>) -> Events<Container, ReusableObject, Observable<ObservableConvertible.Element>> {
+        return with { (container, reusable, observable) -> Observable<ObservableConvertible.Element> in
             observable.asObservable()
-                .catchError({ (error) -> Observable<O.E> in
+                .catchError({ (error) -> Observable<ObservableConvertible.Element> in
                     return errorHandler(error)
                 })
                 .do(onError: { (error) in
@@ -52,15 +53,15 @@ public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableCo
         }
     }
     
-    private func flatten(_ errorHandler: ((Error) -> Observable<O.E>)? = nil) -> Observable<O.E> {
+    private func flatten(_ errorHandler: ((Error) -> Observable<ObservableConvertible.Element>)? = nil) -> Observable<ObservableConvertible.Element> {
         return flatten(with: { $2 }, errorHandler)
     }
     
-    private func flatten<T>(with extra: @escaping (C, R, O.E) -> T,
-                           _ errorHandler: ((Error) -> Observable<O.E>)? = nil) -> Observable<T> {
+    private func flatten<T>(with extra: @escaping (Container, ReusableObject, ObservableConvertible.Element) -> T,
+                           _ errorHandler: ((Error) -> Observable<ObservableConvertible.Element>)? = nil) -> Observable<T> {
         return obs.flatMap({ (values) -> Observable<T> in
             values.1.asObservable()
-                .catchError({ (error) -> Observable<O.E> in
+                .catchError({ (error) -> Observable<ObservableConvertible.Element> in
                     return errorHandler?(error) ?? Observable.error(error)
                 })
                 .do(onError: { (error) in
@@ -72,24 +73,24 @@ public struct Events<C : ReusableContainer, R : ReusableObject, O : ObservableCo
 }
 
 
-public extension Events where R : Indexed, C : IndexedContainer, R.IndexedType == C.IndexedType {
+public extension Events where ReusableObject : IndexedType, Container : IndexedContainerType, ReusableObject.Indexed == Container.Indexed {
     
-    func withIndexPath<T>(_ carried: @escaping (IndexPath?, O.E) -> T) -> Events<C, R, Observable<T>> {
+    func withIndexPath<T>(_ carried: @escaping (IndexPath?, ObservableConvertible.Element) -> T) -> Events<Container, ReusableObject, Observable<T>> {
         return with { (container, reusable, observable) -> Observable<T> in
             observable.asObservable()
                 .map { (e) -> T in
-                    carried(container.indexPath(for: reusable as! C.IndexedType), e)
+                    carried(container.indexPath(for: reusable as! Container.Indexed), e)
             }
         }
     }
     
-    func withIndexPath() -> Events<C, R, Observable<(IndexPath?, O.E)>> {
-        return withIndexPath { ($0, $1) }
+    func withIndexPath() -> Events<Container, ReusableObject, Observable<(IndexPath?, ObservableConvertible.Element)>> {
+        return withIndexPath { (indexPath: $0, element: $1) }
     }
     
 }
 
-public extension Events where R : Indexed, C : ModelIndexedContainer, R.IndexedType == C.IndexedType {
+public extension Events where ReusableObject : IndexedType, Container : ModelIndexedContainer, ReusableObject.Indexed == Container.Indexed {
     
     /// Create a new Events instance with model from the Reusable
     /// The result could emit an Error event which is from ModelIndexedContainer.model<T>(at:) throws -> T
@@ -98,33 +99,35 @@ public extension Events where R : Indexed, C : ModelIndexedContainer, R.IndexedT
     ///   - modelType: The model's type
     ///   - carried: A transfromer from model to the value you wanna
     /// - Returns: A new Events instance with new type T
-    func withModel<T, M>(with modelType: M.Type, _ carried: @escaping (O.E, M?) -> T) -> Events<C, R, Observable<T>> {
+    func withModel<T, M>(with modelType: M.Type, _ carried: @escaping (M?, ObservableConvertible.Element) -> T) -> Events<Container, ReusableObject, Observable<T>> {
         return with { (container, reusable, observable) -> Observable<T> in
             observable.asObservable()
                 .flatMap { (e) -> Observable<T> in
-                    if let indexPath = container.indexPath(for: reusable as! C.IndexedType) {
+                    if let indexPath = container.indexPath(for: reusable as! Container.Indexed) {
                         do {
                             let model: M = try container.model(at: indexPath)
-                            return Observable.just(carried(e, model))
+                            return Observable.just(carried(model, e))
                         } catch let error {
                             return Observable.error(error)
                         }
                     }
-                    return Observable.just(carried(e, nil))
+                    return Observable.just(carried(nil, e))
                 }
         }
     }
     
-    public func withModel<M>(with modelType: M.Type) -> Events<C, R, Observable<(O.E, M?)>> {
-        return withModel(with: modelType, { ($0, $1) })
+    func withModel<M>(with modelType: M.Type) -> Events<Container, ReusableObject, Observable<(M?, ObservableConvertible.Element)>> {
+        return withModel(with: modelType, { (model: $0, element: $1) })
     }
     
 }
 
 extension Events : ObservableType {
-    public typealias E = O.E
     
-    public func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, Events.E == O.E {
+    public typealias Element = ObservableConvertible.Element
+    
+    public func subscribe<Observer>(_ observer: Observer) -> Disposable where Observer : ObserverType, Events.Element == Observer.Element {
         return flatten().subscribe(observer)
     }
+
 }

@@ -22,14 +22,14 @@ extension Optional : OptionalType {
 }
 
 // Originally from here: https://github.com/RxSwiftCommunity/RxOptional/blob/master/Source/Observable%2BOptional.swift#L8-L21
-extension ObservableType where E : OptionalType {
-    func filterNil() -> Observable<E.Wrapped> {
+extension ObservableType where Element : OptionalType {
+    func filterNil() -> Observable<Element.Wrapped> {
         
-        return self.flatMap { element -> Observable<E.Wrapped> in
+        return self.flatMap { element -> Observable<Element.Wrapped> in
             guard let value = element.value else {
-                return Observable<E.Wrapped>.empty()
+                return Observable<Element.Wrapped>.empty()
             }
-            return Observable<E.Wrapped>.just(value)
+            return Observable<Element.Wrapped>.just(value)
         }
     }
 }
@@ -55,13 +55,13 @@ func ?>> <A1, B1, A2, B2>(tuple: (A1, B1), type: (A2, B2).Type) -> (A2, B2)? {
 }
 
 extension ObservableType {
-    func mapFilterNil<T>(_ selector: @escaping (E) -> T?) -> Observable<T> {
+    func mapFilterNil<T>(_ selector: @escaping (Element) -> T?) -> Observable<T> {
         return map(selector).filterNil()
     }
 }
 
 extension Array where Element: ObservableType {
-    func merge() -> Observable<Element.E>? {
+    func merge() -> Observable<Element.Element>? {
         guard count > 0 else { return nil }
         return Observable.merge(map{ $0.asObservable() })
     }

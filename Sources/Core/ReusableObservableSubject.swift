@@ -9,12 +9,12 @@
 import Foundation
 import RxSwift
 
-class ReusableObservableSubject<C : ReusableContainer, ObservableConvertible> : SubjectType {
+class ReusableObservableSubject<Container : ReusableContainerType, ObservableConvertible> : SubjectType {
     
-    typealias E = (NSObject, ObservableConvertible)
-    typealias SubjectObserverType = AnyObserver<E>
+    typealias Element = (NSObject, ObservableConvertible)
+    typealias Observer = AnyObserver<Element>
     
-    private let targetSubject: ReplaySubject<E> = ReplaySubject<E>.createUnbounded()
+    private let targetSubject: ReplaySubject<Element> = ReplaySubject<Element>.createUnbounded()
     
     private let toObservableConvertible: (NSObject) -> ObservableConvertible
     
@@ -30,11 +30,11 @@ class ReusableObservableSubject<C : ReusableContainer, ObservableConvertible> : 
         reusables.forEach(emitReusableObservable)
     }
     
-    func subscribe<O>(_ observer: O) -> Disposable where O : ObserverType, ReusableObservableSubject.E == O.E {
+    func subscribe<Observer>(_ observer: Observer) -> Disposable where Observer : ObserverType, ReusableObservableSubject.Element == Observer.Element {
         return targetSubject.subscribe(observer)
     }
     
-    func asObserver() -> ReusableObservableSubject<C, ObservableConvertible>.SubjectObserverType {
+    func asObserver() -> ReusableObservableSubject<Container, ObservableConvertible>.Observer {
         return AnyObserver(targetSubject)
     }
     

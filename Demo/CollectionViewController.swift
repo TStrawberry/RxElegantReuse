@@ -47,14 +47,14 @@ class CollectionViewController: UICollectionViewController {
                 return ControlEvent(events: event.map { headerView.section })
             })
             .subscribe(onNext: { (section) in
-                print(section)
+                print(#file, #line, "Button event with header section: \(section)")
             })
             .disposed(by: bag)
         
         collectionView?.rx
             .events(\DemoButtonCollectionViewCell.button.rx.primaryAction)
             .subscribe({ (_) in
-                print("button")
+                print(#file, #line, "Button event")
             })
             .disposed(by: bag)
         #endif
@@ -97,8 +97,8 @@ class CollectionViewController: UICollectionViewController {
         #if os(iOS)
         collectionView?.rx
             .events(\DemoStepperCollectionViewCell.stepper.rx.value.changed)
-            .subscribe({ (_) in
-                print("stepper")
+            .subscribe({ (value) in
+                print(#file, #line, "Stepper event with value: \(value)")
             })
             .disposed(by: bag)
         
@@ -107,13 +107,13 @@ class CollectionViewController: UICollectionViewController {
                 return ControlEvent(events: event.map { headerView.section })
             })
             .subscribe(onNext: { (section) in
-                print(section)
+                print(#file, #line, "Button event with header section: \(section)")
             })
             .disposed(by: bag)
         
         collectionView?.rx.events(\CollectionViewFooterView.switcher.rx.isOn.changed)
-            .subscribe(onNext: { (_) in
-                print("Switch in footer switched")
+            .subscribe(onNext: { (isOn) in
+                print(#file, #line, "Switch event in footer with isOn: \(isOn)")
             })
             .disposed(by: bag)
         #endif

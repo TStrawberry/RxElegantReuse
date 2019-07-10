@@ -9,16 +9,16 @@
 import Foundation
 import RxSwift
 
-public protocol ReusableContainer : NSObjectProtocol { }
+public protocol ReusableContainerType : NSObjectProtocol { }
 
-public protocol IndexedContainer : ReusableContainer {
+public protocol IndexedContainerType : ReusableContainerType {
     
-    associatedtype IndexedType: IndexedObject
+    associatedtype Indexed: IndexedObjectType
     
-    func indexPath(for cell: IndexedType) -> IndexPath?
+    func indexPath(for cell: Indexed) -> IndexPath?
 }
 
-public protocol ModelIndexedContainer : IndexedContainer {
+public protocol ModelIndexedContainer : IndexedContainerType {
     
     func model<T>(at indexPath: IndexPath) throws -> T
 }
@@ -27,7 +27,7 @@ public protocol ModelIndexedContainer : IndexedContainer {
 
 fileprivate var elegantEventsManagerContext: UInt8 = 0
 
-extension ReusableContainer {
+extension ReusableContainerType {
     
     var elegantManager: ElegantEventsManager<Self> {
         
@@ -39,16 +39,16 @@ extension ReusableContainer {
         return elegantMgr
     }
     
-    func add<R : ReusableObject>(_ reusableObject: R) {
+    func add<ReusableObject : ReusableObjectType>(_ reusableObject: ReusableObject) {
         elegantManager.add(reusableObject)
     }
     
 }
 
 
-public extension Reactive where Base : ReusableContainer {
+public extension Reactive where Base : ReusableContainerType {
     
-    func events<R : ReusableObject, O : ObservableConvertibleType>(_ keyPath : KeyPath<R, O>) -> Events<Base, R, O> {
+    func events<ReusableObject : ReusableObjectType, ObservableConvertible : ObservableConvertibleType>(_ keyPath : KeyPath<ReusableObject, ObservableConvertible>) -> Events<Base, ReusableObject, ObservableConvertible> {
         debugOnly { MainScheduler.ensureExecutingOnScheduler() }
         var events = base.elegantManager.events(for: keyPath)
         events.container = base

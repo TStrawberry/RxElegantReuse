@@ -8,21 +8,21 @@
 
 import Foundation
 
-public protocol Reusable : NSObjectProtocol {
-    associatedtype BaseReusableType : NSObject
+public protocol ReusableType : NSObjectProtocol {
+    associatedtype BaseReusable : NSObject
+    associatedtype Container : ReusableContainerType
 }
 
-public protocol Indexed : Reusable {
-    associatedtype IndexedType : NSObject
+public protocol IndexedType : ReusableType {
+    associatedtype Indexed : NSObject
 }
 
+public typealias ReusableObjectType = NSObject & ReusableType
+public typealias IndexedObjectType = ReusableObjectType & IndexedType
 
-public typealias ReusableObject = NSObject & Reusable
-public typealias IndexedObject = ReusableObject & Indexed
-
-public extension Reusable where Self : NSObject {
+public extension ReusableType where Self : NSObject {
     @discardableResult
-    func managed<T : ReusableContainer>(by container: T?) -> Self {
+    func managed(by container: Container?) -> Self {
         container?.add(self)
         return self
     }
